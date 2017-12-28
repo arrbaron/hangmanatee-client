@@ -1,0 +1,14 @@
+.register-form {
+  background-color: lightgrey;
+  max-width: 1040px;
+  margin: 0 auto 0 auto;
+  padding: 30px 20px 10px 20px;
+}
+
+.register-form label, .register-form button {
+  display: block;
+}
+
+.register-form button {
+  margin: 0 auto 0 auto;
+}

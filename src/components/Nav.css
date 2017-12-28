@@ -1,0 +1,12 @@
+nav {
+  position: fixed;
+  background-color: grey;
+  text-align: right;
+  min-height: 20px;
+  width: 100%;
+  top: 0;
+}
+
+nav span {
+  margin-right: 10px;
+}
