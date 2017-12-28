@@ -1,0 +1,14 @@
+.landing-section {
+  min-height: 200px;
+  max-width: 1040px;
+  padding: 30px 20px 10px 20px;
+  margin: 0 auto 0 auto;
+}
+
+.landing-section:nth-child(odd) {
+  background-color: darkgrey;
+}
+
+.landing-section:nth-child(even) {
+  background-color: lightgrey;
+}
