@@ -2,7 +2,7 @@ import React from "react";
 import "./RegisterForm.css";
 
 const RegisterForm = () => (
-  <form class="register-form">
+  <form className="register-form">
     <h3>Get started</h3>
     <label>First name</label>
     <input type="text" placeholder="first name" />

@@ -1,8 +1,9 @@
 import React from "react";
+import { Link } from "react-router-dom";
 import "./Nav.css";
 
 const Nav = () => (
-  <nav role="navigation">
+  <nav>
     <span>Login</span>
     <span>Register</span>
   </nav>
