@@ -1,12 +1,12 @@
 import React from "react";
 import { Link } from "react-router-dom";
-import Nav from "./Nav";
-import Header from "./Header";
-import Footer from "./Footer";
-import Card from "./Card";
-import "./WordSet.css";
+import Nav from "../components/Nav";
+import Header from "../components/Header";
+import Footer from "../components/Footer";
+import Card from "../components/Card";
+import "./WordSetPage.css";
 
-const WordSet = props => (
+const WordSetPage = props => (
   <section>
     <Nav />
     <Header />
@@ -27,4 +27,4 @@ const WordSet = props => (
   </section>
 );
 
-export default WordSet;
+export default WordSetPage;

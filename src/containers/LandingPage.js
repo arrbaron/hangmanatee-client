@@ -1,13 +1,13 @@
 import React, { Component } from 'react';
 
-import Header from "./Header";
-import Nav from "./Nav";
-import LandingSection from "./LandingSection";
-import RegisterForm from ".//RegisterForm";
-import Footer from "./Footer";
-import '../App.css';
+import Header from "../components/Header";
+import Nav from "../components/Nav";
+import LandingSection from "../components/LandingSection";
+import RegisterForm from "../components/RegisterForm";
+import Footer from "../components/Footer";
+import './App.css';
 
-class Landing extends Component {
+class LandingPage extends Component {
   render() {
     return (
       <div className="App">
@@ -32,4 +32,4 @@ class Landing extends Component {
   }
 }
 
-export default Landing;
+export default LandingPage;
