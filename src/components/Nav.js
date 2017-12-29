@@ -4,8 +4,10 @@ import "./Nav.css";
 
 const Nav = () => (
   <nav>
-    <span>Login</span>
-    <span>Register</span>
+    <ul>
+      <Link to="/login"><li>Login</li></Link>
+      <Link to="/register"><li>Register</li></Link>
+    </ul>
   </nav>
 );
 
