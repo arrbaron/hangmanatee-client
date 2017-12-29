@@ -7,6 +7,7 @@ import {
 import LandingPage from "./LandingPage";
 import WordSetPage from "./WordSetPage";
 import RegisterPage from "./RegisterPage";
+import LoginPage from "./LoginPage";
 import './App.css';
 
 class App extends Component {
@@ -16,6 +17,7 @@ class App extends Component {
         <div className="app">
           <Route exact path="/" component={LandingPage} />
           <Route exact path="/register" component={RegisterPage} />
+          <Route exact path="/login" component={LoginPage} />
           <Route exact path="/word-set/:id" component={WordSetPage} />
         </div>
       </Router>

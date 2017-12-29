@@ -1,0 +1,14 @@
+.login-form {
+  background-color: lightgrey;
+  max-width: 1040px;
+  margin: 0 auto 0 auto;
+  padding: 30px 20px 10px 20px;
+}
+
+.login-form label, .login-form button {
+  display: block;
+}
+
+.login-form button {
+  margin: 0 auto 0 auto;
+}
