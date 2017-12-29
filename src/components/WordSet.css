@@ -1,0 +1,6 @@
+.word-set {
+  min-height: 200px;
+  background-color: darkgrey;
+  max-width: 1040px;
+  margin: 0 auto 0 auto;
+}
