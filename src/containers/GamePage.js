@@ -1,3 +1,4 @@
+import { sampleSize, filter, shuffle } from "lodash";
 import React from "react";
 import { connect } from "react-redux";
 import { Link } from "react-router-dom";
@@ -15,21 +16,12 @@ const letters = alphabet.map((letter, index) => {
 });
 
 const GamePage = props => {
-  const answerChoices = [props.currentCard];
-  const cards = props.cards;
+  const wrongAnswers = 2;
+  const answerChoices = sampleSize(filter(props.cards, function(o) { return o.term !== props.currentCard.term}), wrongAnswers);
+  answerChoices.push(props.currentCard);
+  const shuffledChoices = shuffle(answerChoices);
 
-  for (let i = 0; i < 2; i++) {
-    let randomIndex = Math.floor(Math.random() * cards.length);
-
-    if (cards[randomIndex].term === props.currentCard.term) {
-      i--;
-    } else {
-      answerChoices.push(cards[randomIndex]);
-      cards.splice(randomIndex, 1);
-    }
-  }
- 
-  const cardChoices = answerChoices.map((card, index) => {
+  const cardChoices = shuffledChoices.map((card, index) => {
     return (
       <Card key={index} term={card.term} def={card.definition} />
     );
