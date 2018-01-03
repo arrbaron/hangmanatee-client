@@ -88,7 +88,7 @@ const initialState = {
       heading: "Create",
       subHeading: "Create custom word sets",
       image: "[image of word set creation]",
-      text: "Create, edit, and share personalized word sets, tailored to what YOU want to learn"
+      text: "Create, edit, and share personalized word sets, tailored to what YOU (or your students) want to learn"
     },
     {
       heading: "Spell",
