@@ -27,7 +27,7 @@ const WordSetPage = props => {
           <button>New list</button>
           <button>New card</button>
           {cards}
-          <Link to={"/game/"+props.match.params.id}><button>Play Hangmanatee with this word set</button></Link>
+          <Link to={"/game/"+props.match.params.id}><button>Play with this word set</button></Link>
         </div>
       </main>
       <Footer />

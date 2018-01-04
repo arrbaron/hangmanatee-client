@@ -1,5 +1,5 @@
 const initialState = {
-  playing: true,
+  playing: false,
   currentUser: {
     username: "roy123",
     firstName: "Roy"

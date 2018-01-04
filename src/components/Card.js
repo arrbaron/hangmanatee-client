@@ -13,6 +13,7 @@ const Card = props => {
     return (
       <div className="card">
         <p>{props.term}</p>
+        <button>Play</button>
         <button>Edit</button>
         <button>Flip</button>
         <button>Delete</button>

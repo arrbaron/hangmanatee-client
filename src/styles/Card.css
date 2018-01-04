@@ -11,20 +11,3 @@
   top: 40%;
   font-weight: bold;
 }
-
-.card button {
-  position: absolute;
-  bottom: 0;
-}
-
-.card button:nth-of-type(1) {
-  left: 0;
-}
-
-.card button:nth-of-type(2) {
-  left: 40%;
-}
-
-.card button:nth-of-type(3) {
-  right: 0;
-}
