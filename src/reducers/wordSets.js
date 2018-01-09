@@ -1,9 +1,4 @@
 const initialState = {
-  playing: false,
-  currentUser: {
-    username: "roy123",
-    firstName: "Roy"
-  },
   currentWordSet: {
     title: "verbs",
     cards: [
@@ -20,15 +15,6 @@ const initialState = {
         definition: "to move like a wave"
       }
     ]
-  },
-  game: {
-    category: "verbs",
-    currentCard: {
-      term: "undulate",
-      definition: "to move like a wave"
-    },
-    guesses: ["a", "e", "g"],
-    guessesLeft: 4
   },
   wordSets: [
     {
@@ -82,32 +68,11 @@ const initialState = {
         }
       ]
     }
-  ],
-  landingSections: [
-    {
-      heading: "Create",
-      subHeading: "Create custom word sets",
-      image: "[image of word set creation]",
-      text: "Create, edit, and share personalized word sets, tailored to what YOU (or your students) want to learn"
-    },
-    {
-      heading: "Spell",
-      subHeading: "Use them to play Hangman(atee)",
-      image: "[image of Hangmanatee game]",
-      text: "Play Hangmanatee using your custom word sets, practicing spelling!"
-    },
-    {
-      heading: "Recall",
-      subHeading: "...and quiz yourself!",
-      image: "[image of word set quizzing]",
-      text: "After finding the word, get quizzed on its meaning!"
-    }
   ]
 };
 
-const reducer = (state=initialState, action) => {
+const wordSets = (state=initialState, action) => {
   return state;
 };
 
-export default reducer;
-
+export default wordSets;
