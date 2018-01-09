@@ -35,9 +35,12 @@ const WordSetPage = props => {
   );
 };
 
-const mapStateToProps = state => ({
-  wordSets: state.wordSets,
-  currentWordSet: state.currentWordSet
-});
+const mapStateToProps = state => {
+  console.log(state);
+  return {
+    wordSets: state.wordSets.wordSets,
+    currentWordSet: state.wordSets.currentWordSet
+  }
+};
 
 export default connect(mapStateToProps)(WordSetPage);

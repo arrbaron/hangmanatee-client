@@ -1,6 +1,4 @@
 import React from 'react';
-import { connect } from "react-redux";
-
 import Header from "../components/Header";
 import Nav from "../components/Nav";
 import LandingSection from "../components/LandingSection";
@@ -9,7 +7,28 @@ import Footer from "../components/Footer";
 import '../styles/App.css';
 
 const LandingPage = props => {
-  const landingSections = props.landingSections.map((section, index) => (
+  const landingSectionsRaw = [
+    {
+      heading: "Create",
+      subHeading: "Create custom word sets",
+      image: "[image of word set creation]",
+      text: "Create, edit, and share personalized word sets, tailored to what YOU (or your students) want to learn"
+    },
+    {
+      heading: "Spell",
+      subHeading: "Use them to play Hangman(atee)",
+      image: "[image of Hangmanatee game]",
+      text: "Play Hangmanatee using your custom word sets, practicing spelling!"
+    },
+    {
+      heading: "Recall",
+      subHeading: "...and quiz yourself!",
+      image: "[image of word set quizzing]",
+      text: "After finding the word, get quizzed on its meaning!"
+    }
+  ];
+
+  const landingSections = landingSectionsRaw.map((section, index) => (
     <LandingSection
      key={index} 
      heading={section.heading}
@@ -30,8 +49,4 @@ const LandingPage = props => {
   );
 }
 
-const mapStateToProps = state => ({
-  landingSections: state.landingSections
-});
-
-export default connect(mapStateToProps)(LandingPage);
+export default LandingPage;

@@ -23,7 +23,7 @@ const Card = props => {
 };
 
 const mapStateToProps = state => ({
-  playing: state.playing
+  playing: state.game.playing
 });
 
 export default connect(mapStateToProps)(Card);
