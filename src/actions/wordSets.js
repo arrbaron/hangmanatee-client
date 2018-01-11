@@ -15,6 +15,16 @@ export const changeWordSetSuccess = wordSet => ({
   wordSet
 });
 
+export const getLastWordSetSuccess = wordSet => ({
+  type: "GET_LAST_WORDSET_SUCCESS",
+  wordSet
+});
+
+export const deleteWordSetSuccess = wordSet => ({
+  type: "DELETE_WORDSET_SUCCESS",
+  wordSet
+});
+
 export const clearSets = () => ({
   type: "CLEAR_SETS"
 });
@@ -52,6 +62,20 @@ export const getWordSets = currentUser => {
   };
 };
 
+export const getLastWordSet = (currentUser) => {
+  console.log(API_BASE_URL);
+  return dispatch => {
+    fetch(`${API_BASE_URL}/wordset/${currentUser}/last`)
+      .then(response => response.json(response))
+      .then(json => {
+        dispatch(getLastWordSetSuccess(json))
+      })
+      .catch(err => {
+        console.log(err)
+      })
+  };
+};
+
 export const changeWordSet = (id, currentUser) => {
   return dispatch => {
     fetch(`${API_BASE_URL}/wordset/${currentUser}/${id}`)
@@ -64,3 +88,24 @@ export const changeWordSet = (id, currentUser) => {
       })
   };
 }
+
+export const deleteWordSet = (id, currentUser) => {
+  return dispatch => {
+    fetch(`${API_BASE_URL}/wordset/${currentUser}/${id}`, {
+      method: "DELETE",
+      headers: {
+        "Content-Type": "application/json"
+      },
+      body: JSON.stringify({ currentUser })
+    })
+      .then(response => response.json())
+      .then(json => {
+        dispatch(deleteWordSetSuccess(json))
+        dispatch(getLastWordSet(currentUser))
+      })
+      .then(() => console.log(currentUser))
+      .catch(err => {
+        console.log(err)
+      })
+  };
+};
