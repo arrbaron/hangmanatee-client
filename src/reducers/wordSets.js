@@ -24,7 +24,7 @@ const wordSets = (state=initialState, action) => {
         console.log(action.wordSet);
         return { ...state, currentWordSet: latestSet, sets: state.sets.concat(action.wordSet) };
       }
-      break;
+      return state;
     case "CHANGE_WORDSET_SUCCESS":
       return { ...state, currentWordSet: action.wordSet };
     case "CLEAR_SETS":
