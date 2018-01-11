@@ -1,78 +1,40 @@
 const initialState = {
   currentWordSet: {
-    title: "verbs",
+    title: "New Word Set",
     cards: [
       {
-        term: "defenestrate",
-        definition: "to throw out a window"
-      },
-      {
-        term: "masticate",
-        definition: "to chew"
-      },
-      {
-        term: "undulate",
-        definition: "to move like a wave"
+        term: "",
+        definition: ""
       }
     ]
   },
-  wordSets: [
-    {
-      title: "verbs",
-      cards: [
-        {
-          term: "defenestrate",
-          definition: "to throw out a window"
-        },
-        {
-          term: "masticate",
-          definition: "to chew"
-        },
-        {
-          term: "undulate",
-          definition: "to move like a wave"
-        }
-      ]
-    },
-    {
-      title: "adjectives",
-      cards: [
-        {
-          term: "lugubrious",
-          definition: "looking or sounding sad"
-        },
-        {
-          term: "fastidious",
-          definition: "very attentive to detail"
-        },
-        {
-          term: "sultry",
-          definition: "seductive"
-        }
-      ]
-    },
-    {
-      title: "nouns",
-      cards: [
-        {
-          term: "petard",
-          definition: "a small bomb used to blast down a door"
-        },
-        {
-          term: "interlocuter",
-          definition: "a person who takes part in a conversation"
-        },
-        {
-          term: "lassitude",
-          definition: "weariness of body or mind"
-        }
-      ]
-    }
-  ]
+  sets: []
 };
 
 const wordSets = (state=initialState, action) => {
-  return state;
+  switch(action.type) {
+    case "CREATE_WORDSET_SUCCESS":
+      console.log(action.wordSet);
+      // return { ...state, data: [...state.data, action.wordSet] };
+      return { ...state, currentWordSet: action.wordSet, sets: [...state.sets, action.wordSet] };
+    case "GET_WORDSET_SUCCESS":
+      console.log(action.wordSet);
+      if (action.wordSet.length > 0) {
+        const latestSet = action.wordSet[action.wordSet.length - 1];
+        console.log(action.wordSet);
+        return { ...state, currentWordSet: latestSet, sets: state.sets.concat(action.wordSet) };
+      }
+      break;
+    case "CLEAR_SETS":
+      // state.currentWordSet = {};
+      // state.sets = [];
+      // state.sets.length = 0;
+      console.log("clearing sets");
+      return { ...state, currentWordSet: {}, sets: []};
+      // return state;
+    default:
+      return state;
+  }
 };
 
 export default wordSets;
