@@ -1,3 +1,5 @@
+import { API_BASE_URL } from "../config";
+
 export const createWordSetSuccess = wordSet => ({
   type: "CREATE_WORDSET_SUCCESS",
   wordSet
@@ -19,7 +21,7 @@ export const clearSets = () => ({
 
 export const createWordSet = (currentUser) => {
   return dispatch => {
-    fetch(`http://localhost:8080/api/wordset/${currentUser}/`, {
+    fetch(`${API_BASE_URL}/wordset/${currentUser}/`, {
       method: "POST",
       headers: {
         "Content-Type": "application/json"
@@ -37,8 +39,9 @@ export const createWordSet = (currentUser) => {
 };
 
 export const getWordSets = currentUser => {
+  console.log(API_BASE_URL);
   return dispatch => {
-    fetch(`http://localhost:8080/api/wordset/${currentUser}/`) 
+    fetch(`${API_BASE_URL}/wordset/${currentUser}/`) 
       .then(response => response.json())
       .then(json => {
         dispatch(getWordSetSuccess(json))
@@ -51,7 +54,7 @@ export const getWordSets = currentUser => {
 
 export const changeWordSet = (id, currentUser) => {
   return dispatch => {
-    fetch(`http://localhost:8080/api/wordset/${currentUser}/${id}`)
+    fetch(`${API_BASE_URL}/wordset/${currentUser}/${id}`)
       .then(response => response.json())
       .then(json => {
         dispatch(changeWordSetSuccess(json))
