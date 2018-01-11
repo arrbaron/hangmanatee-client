@@ -1,9 +1,10 @@
 import React, { Component } from 'react';
 import { connect } from "react-redux";
 import {
-  BrowserRouter as Router,
+  Router,
   Route,
 } from "react-router-dom";
+import history from "../history";
 import { loginUserSuccess } from "../actions/user";
 import LandingPage from "./LandingPage";
 import WordSetPage from "./WordSetPage";
@@ -20,7 +21,7 @@ class App extends Component {
   
   render() {
     return (
-      <Router>
+      <Router history={history}>
         <div className="app">
           <Route exact path="/" component={LandingPage} />
           <Route exact path="/register" component={RegisterPage} />

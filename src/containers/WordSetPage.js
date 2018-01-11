@@ -1,46 +1,80 @@
 import React from "react";
 import { connect } from "react-redux";
 import { Link } from "react-router-dom";
+import { createWordSet, getWordSet, clearSets } from "../actions/wordSets";
 import Nav from "../components/Nav";
 import Header from "../components/Header";
 import Footer from "../components/Footer";
 import Card from "../components/Card";
 import "../styles/WordSetPage.css";
 
-const WordSetPage = props => {
-  const wordSets = props.wordSets.map((wordSet, index) => (
-    <button key={index}>{wordSet.title}</button>
-  ));
-
-  const cards = props.currentWordSet.cards.map((card, index) => (
-    <Card key={index} term={card.term} def={card.definition} />
-  ));
+class WordSetPage extends React.Component {
+  handleClick(event) {
+    this.props.dispatch(createWordSet(this.props.currentUser.username));
+  };
   
-  return (
-    <section>
-      <Nav />
-      <Header />
-      <main role="main">
-        <div className="word-set">
-          <h3>{props.currentWordSet.title}</h3>
-          {wordSets}
-          <button>New list</button>
-          <button>New card</button>
-          {cards}
-          <Link to={"/game/"+props.match.params.id}><button>Play with this word set</button></Link>
-        </div>
-      </main>
-      <Footer />
-    </section>
-  );
-};
+  componentDidMount() {
+    // this.props.dispatch(clearSets());
+    // console.log(this.props.currentWordSet.username);
+    // this.props.dispatch(getWordSet(this.props.currentUser.username));
+    console.log("I'm mounting!");
+  }
+  
+  render() {
+    console.log(this.props.wordSets);
+    if (this.props.wordSets) {
+      
+    }
+    const wordSets = this.props.wordSets.map((wordSet, index) => (
+      <button key={index}>{wordSet.title}</button>
+    ));
 
-const mapStateToProps = state => {
-  console.log(state);
-  return {
-    wordSets: state.wordSets.wordSets,
-    currentWordSet: state.wordSets.currentWordSet
+    if (this.props.currentWordSet.cards) {
+      console.log(this.props.currentWordSet.cards);
+      const cards = this.props.currentWordSet.cards.map((card, index) => (
+        <Card key={index} term={card.term} def={card.definition} />
+      ));
+
+      return (
+        <section>
+          <Nav />
+          <Header />
+          <main role="main">
+            <div className="word-set">
+              <h3>{this.props.currentWordSet.title}</h3>
+              {wordSets}
+              <button onClick={event => this.handleClick(event)}>New list</button>
+              <button>New card</button>
+              {cards}
+              <Link to={"/game/" + this.props.match.params.id}><button>Play with this word set</button></Link>
+            </div>
+          </main>
+          <Footer />
+        </section>
+      )
+    } else {
+        return (
+          <section>
+            <Nav />
+            <Header />
+            <main role="main">
+              <div className="word-set">
+                <h3>New wordset</h3>
+                <button onClick={event => this.handleClick(event)}>New list</button>
+                <button>New card</button>
+              </div>
+            </main>
+            <Footer />
+          </section>
+      );
+    }
   }
 };
+
+const mapStateToProps = state => ({
+  wordSets: state.wordSets.sets,
+  currentWordSet: state.wordSets.currentWordSet,
+  currentUser: state.user.currentUser
+});
 
 export default connect(mapStateToProps)(WordSetPage);
