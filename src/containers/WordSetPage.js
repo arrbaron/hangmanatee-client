@@ -1,7 +1,7 @@
 import React from "react";
 import { connect } from "react-redux";
 import { Link } from "react-router-dom";
-import { createWordSet, changeWordSet } from "../actions/wordSets";
+import { createWordSet, changeWordSet, deleteWordSet } from "../actions/wordSets";
 import Nav from "../components/Nav";
 import Header from "../components/Header";
 import Footer from "../components/Footer";
@@ -27,7 +27,7 @@ class WordSetPage extends React.Component {
     }
     const wordSets = this.props.wordSets.map((wordSet, index) => (
       <button key={wordSet._id} onClick={
-        () => this.props.dispatch(changeWordSet(wordSet._id, this.props.currentWordSet.username))}>
+        () => this.props.dispatch(changeWordSet(wordSet._id, this.props.currentUser.username))}>
         {wordSet.title}
       </button>
     ));
@@ -50,6 +50,10 @@ class WordSetPage extends React.Component {
               <button>New card</button>
               {cards}
               <Link to={"/game/" + this.props.match.params.id}><button>Play with this word set</button></Link>
+              <button onClick={
+                () => this.props.dispatch(deleteWordSet(this.props.currentWordSet._id, this.props.currentUser.username))}>
+                Delete list
+              </button>
             </div>
           </main>
           <Footer />
