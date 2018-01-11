@@ -1,5 +1,5 @@
 import history from "../history";
-import { getWordSet, clearSets } from "./wordSets";
+import { getWordSets, clearSets } from "./wordSets";
 
 const registerUserSuccess = user => ({
   type: "REGISTER_USER_SUCCESS",
@@ -39,7 +39,7 @@ export const loginUser = (username, password) => {
     })
     .then(response => response.json())
     .then(dispatch(clearSets))
-    .then(dispatch(getWordSet(username)))
+    .then(dispatch(getWordSets(username)))
     .then(json => {
       const { authToken } = json;
       localStorage.setItem("token", authToken);

@@ -1,7 +1,7 @@
 import React from "react";
 import { connect } from "react-redux";
 import { Link } from "react-router-dom";
-import { createWordSet, getWordSet, clearSets } from "../actions/wordSets";
+import { createWordSet, changeWordSet } from "../actions/wordSets";
 import Nav from "../components/Nav";
 import Header from "../components/Header";
 import Footer from "../components/Footer";
@@ -26,7 +26,10 @@ class WordSetPage extends React.Component {
       
     }
     const wordSets = this.props.wordSets.map((wordSet, index) => (
-      <button key={index}>{wordSet.title}</button>
+      <button key={wordSet._id} onClick={
+        () => this.props.dispatch(changeWordSet(wordSet._id, this.props.currentWordSet.username))}>
+        {wordSet.title}
+      </button>
     ));
 
     if (this.props.currentWordSet.cards) {
