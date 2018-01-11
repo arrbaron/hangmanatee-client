@@ -29,6 +29,17 @@ export const clearSets = () => ({
   type: "CLEAR_SETS"
 });
 
+export const showTitleEdit = shouldShow => ({
+  type: "SHOW_TITLE_EDIT",
+  shouldShow
+});
+
+export const editTitleSuccess = (wordSet, id) => ({
+  type: "EDIT_TITLE_SUCCESS",
+  wordSet,
+  id
+});
+
 export const createWordSet = (currentUser) => {
   return dispatch => {
     fetch(`${API_BASE_URL}/wordset/${currentUser}/`, {
@@ -104,6 +115,28 @@ export const deleteWordSet = (id, currentUser) => {
         dispatch(getLastWordSet(currentUser))
       })
       .then(() => console.log(currentUser))
+      .catch(err => {
+        console.log(err)
+      })
+  };
+};
+
+export const editTitle = (newTitle, id, currentUser) => {
+  console.log(newTitle);
+  const title = newTitle;
+  return dispatch => {
+    fetch(`${API_BASE_URL}/wordset/${currentUser}/${id}`, {
+      method: "PUT",
+      headers: {
+        "Content-Type": "application/json"
+      },
+      body: JSON.stringify({ title })
+    })
+      .then(response => response.json())
+      .then(json => {
+        dispatch(editTitleSuccess(json, id))
+        dispatch(showTitleEdit(false))
+      })
       .catch(err => {
         console.log(err)
       })

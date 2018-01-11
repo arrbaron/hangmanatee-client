@@ -1,7 +1,7 @@
 import React from "react";
 import { connect } from "react-redux";
 import { Link } from "react-router-dom";
-import { createWordSet, changeWordSet, deleteWordSet } from "../actions/wordSets";
+import { createWordSet, changeWordSet, deleteWordSet, showTitleEdit, editTitle } from "../actions/wordSets";
 import Nav from "../components/Nav";
 import Header from "../components/Header";
 import Footer from "../components/Footer";
@@ -11,15 +11,15 @@ import "../styles/WordSetPage.css";
 class WordSetPage extends React.Component {
   handleClick(event) {
     this.props.dispatch(createWordSet(this.props.currentUser.username));
-  };
-  
-  componentDidMount() {
-    // this.props.dispatch(clearSets());
-    // console.log(this.props.currentWordSet.username);
-    // this.props.dispatch(getWordSet(this.props.currentUser.username));
-    console.log("I'm mounting!");
   }
-  
+
+  handleEditTitleSubmit(event) {
+    event.preventDefault();
+    // LOOK AT THE LINE BELOW
+    const newTitle = event.target.newTitle.value;
+    this.props.dispatch(editTitle(newTitle, this.props.currentWordSet._id, this.props.currentUser.username));
+  }
+    
   render() {
     console.log(this.props.wordSets);
     if (this.props.wordSets) {
@@ -45,6 +45,13 @@ class WordSetPage extends React.Component {
           <main role="main">
             <div className="word-set">
               <h3>{this.props.currentWordSet.title}</h3>
+              <button onClick={() => this.props.dispatch(showTitleEdit(!this.props.showTitleEdit))}>Edit title</button>
+              {this.props.showTitleEdit &&
+                <form onSubmit={event => this.handleEditTitleSubmit(event)}>
+                  <input type="text" name="newTitle" placeholder={this.props.currentWordSet.title} required/>
+                  <button>Submit</button>
+                </form>
+              }
               {wordSets}
               <button onClick={event => this.handleClick(event)}>New list</button>
               <button>New card</button>
@@ -81,7 +88,8 @@ class WordSetPage extends React.Component {
 const mapStateToProps = state => ({
   wordSets: state.wordSets.sets,
   currentWordSet: state.wordSets.currentWordSet,
-  currentUser: state.user.currentUser
+  currentUser: state.user.currentUser,
+  showTitleEdit: state.wordSets.showTitleEdit
 });
 
 export default connect(mapStateToProps)(WordSetPage);
