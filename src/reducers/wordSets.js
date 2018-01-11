@@ -8,7 +8,8 @@ const initialState = {
       }
     ]
   },
-  sets: []
+  sets: [],
+  showTitleEdit: false
 };
 
 const wordSets = (state=initialState, action) => {
@@ -41,6 +42,12 @@ const wordSets = (state=initialState, action) => {
     case "CLEAR_SETS":
       console.log("clearing sets");
       return { ...state, currentWordSet: {}, sets: []};
+    case "SHOW_TITLE_EDIT":
+      console.log("show title edit");
+      return { ...state, showTitleEdit: action.shouldShow };
+    case "EDIT_TITLE_SUCCESS":
+      console.log("EDIT TITLE SUCCESS");
+      return { ...state, sets: state.sets.map(set => set._id === action.wordSet._id ? action.wordSet : set), currentWordSet: action.wordSet};
     default:
       return state;
   }
