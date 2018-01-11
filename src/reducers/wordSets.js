@@ -25,6 +25,8 @@ const wordSets = (state=initialState, action) => {
         return { ...state, currentWordSet: latestSet, sets: state.sets.concat(action.wordSet) };
       }
       break;
+    case "CHANGE_WORDSET_SUCCESS":
+      return { ...state, currentWordSet: action.wordSet };
     case "CLEAR_SETS":
       // state.currentWordSet = {};
       // state.sets = [];

@@ -19,7 +19,8 @@ const Nav = props => {
     return (
       <nav>
         <ul>
-          <Link to="/game/misc"><li>Play, ${props.currentUser.username}</li></Link>
+          <li>Hello, {props.currentUser.username}!</li>
+          <Link to="/game/misc"><li>Play</li></Link>
           <Link to="/word-set/misc"><li>Wordsets</li></Link>
           <button onClick={() => handleLogout()}>Logout</button>
           <button onClick={() => handleTestProtectedEndPoint()}>Test protected endpoint</button>

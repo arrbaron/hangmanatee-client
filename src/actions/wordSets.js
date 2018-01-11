@@ -8,6 +8,15 @@ export const getWordSetSuccess = wordSet => ({
   wordSet
 });
 
+export const changeWordSetSuccess = wordSet => ({
+  type: "CHANGE_WORDSET_SUCCESS",
+  wordSet
+});
+
+export const clearSets = () => ({
+  type: "CLEAR_SETS"
+});
+
 export const createWordSet = (currentUser) => {
   return dispatch => {
     fetch(`http://localhost:8080/api/wordset/${currentUser}/`, {
@@ -27,7 +36,7 @@ export const createWordSet = (currentUser) => {
   };
 };
 
-export const getWordSet = currentUser => {
+export const getWordSets = currentUser => {
   return dispatch => {
     fetch(`http://localhost:8080/api/wordset/${currentUser}/`) 
       .then(response => response.json())
@@ -40,6 +49,15 @@ export const getWordSet = currentUser => {
   };
 };
 
-export const clearSets = () => ({
-  type: "CLEAR_SETS"
-});
+export const changeWordSet = (id, currentUser) => {
+  return dispatch => {
+    fetch(`http://localhost:8080/api/wordset/${currentUser}/${id}`)
+      .then(response => response.json())
+      .then(json => {
+        dispatch(changeWordSetSuccess(json))
+      })
+      .catch(err => {
+        console.log(err)
+      })
+  };
+}
