@@ -1,4 +1,5 @@
 import history from "../history";
+import { API_BASE_URL } from "../config";
 import { getWordSets, clearSets } from "./wordSets";
 
 const registerUserSuccess = user => ({
@@ -14,7 +15,7 @@ export const loginUserSuccess = (token, user) => ({
 
 export const registerUser = (username, password) => {
   return (dispatch) => {
-    fetch("http://localhost:8080/api/user/", {
+    fetch(`${API_BASE_URL}/user/`, {
       method: "POST",
       headers: {
         "Content-Type": "application/json"
@@ -30,7 +31,7 @@ export const registerUser = (username, password) => {
 
 export const loginUser = (username, password) => {
   return (dispatch) => {
-    fetch("http://localhost:8080/api/auth/login", {
+    fetch(`${API_BASE_URL}/auth/login`, {
       method: "POST",
       headers: {
         "Content-Type": "application/json"
