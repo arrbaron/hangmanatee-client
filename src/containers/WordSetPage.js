@@ -1,7 +1,7 @@
 import React from "react";
 import { connect } from "react-redux";
 import { Link } from "react-router-dom";
-import { createWordSet, changeWordSet, deleteWordSet, showTitleEdit, editTitle } from "../actions/wordSets";
+import { createWordSet, changeWordSet, deleteWordSet, showTitleEdit, editTitle, createCard } from "../actions/wordSets";
 import Nav from "../components/Nav";
 import Header from "../components/Header";
 import Footer from "../components/Footer";
@@ -9,10 +9,6 @@ import Card from "../components/Card";
 import "../styles/WordSetPage.css";
 
 class WordSetPage extends React.Component {
-  handleClick(event) {
-    this.props.dispatch(createWordSet(this.props.currentUser.username));
-  }
-
   handleEditTitleSubmit(event) {
     event.preventDefault();
     // LOOK AT THE LINE BELOW
@@ -21,7 +17,6 @@ class WordSetPage extends React.Component {
   }
     
   render() {
-    console.log(this.props.wordSets);
     if (this.props.wordSets) {
       
     }
@@ -53,8 +48,8 @@ class WordSetPage extends React.Component {
                 </form>
               }
               {wordSets}
-              <button onClick={event => this.handleClick(event)}>New list</button>
-              <button>New card</button>
+              <button onClick={() => this.props.dispatch(createWordSet(this.props.currentUser.username))}>New list</button>
+              <button onClick={() => this.props.dispatch(createCard(this.props.currentWordSet._id, this.props.currentUser.username))}>New card</button>
               {cards}
               <Link to={"/game/" + this.props.match.params.id}><button>Play with this word set</button></Link>
               <button onClick={

@@ -40,6 +40,11 @@ export const editTitleSuccess = (wordSet, id) => ({
   id
 });
 
+export const createCardSuccess = card => ({
+  type: "CREATE_CARD_SUCCESS",
+  card
+});
+
 export const createWordSet = (currentUser) => {
   return dispatch => {
     fetch(`${API_BASE_URL}/wordset/${currentUser}/`, {
@@ -136,6 +141,26 @@ export const editTitle = (newTitle, id, currentUser) => {
       .then(json => {
         dispatch(editTitleSuccess(json, id))
         dispatch(showTitleEdit(false))
+      })
+      .catch(err => {
+        console.log(err)
+      })
+  };
+};
+
+export const createCard = (id, currentUser) => {
+  console.log(id, currentUser);
+  return dispatch => {
+    fetch(`${API_BASE_URL}/wordset/${currentUser}/${id}/cards`, {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json"
+      },
+      body: JSON.stringify({ currentUser })
+    })
+      .then(response => response.json())
+      .then(json => {
+        dispatch(createCardSuccess(json))
       })
       .catch(err => {
         console.log(err)
