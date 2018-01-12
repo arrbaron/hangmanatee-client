@@ -48,6 +48,16 @@ const wordSets = (state=initialState, action) => {
     case "EDIT_TITLE_SUCCESS":
       console.log("EDIT TITLE SUCCESS");
       return { ...state, sets: state.sets.map(set => set._id === action.wordSet._id ? action.wordSet : set), currentWordSet: action.wordSet};
+    case "CREATE_CARD_SUCCESS":
+    console.log("CREATE_CARD_SUCCESS");
+    return {
+       ...state, 
+       currentWordSet: {
+         ...state.currentWordSet,
+         cards: [ ...state.currentWordSet.cards, action.card]
+       }
+    }
+    // return { ...state, se: "banana card" };
     default:
       return state;
   }
