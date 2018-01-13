@@ -13,7 +13,7 @@ class WordSetPage extends React.Component {
     event.preventDefault();
     // LOOK AT THE LINE BELOW
     const newTitle = event.target.newTitle.value;
-    this.props.dispatch(editTitle(newTitle, this.props.currentWordSet._id, this.props.currentUser.username));
+    this.props.dispatch(editTitle(newTitle, this.props.currentWordSet._id));
   }
     
   render() {
@@ -22,15 +22,14 @@ class WordSetPage extends React.Component {
     }
     const wordSets = this.props.wordSets.map((wordSet, index) => (
       <button key={wordSet._id} onClick={
-        () => this.props.dispatch(changeWordSet(wordSet._id, this.props.currentUser.username))}>
+        () => this.props.dispatch(changeWordSet(wordSet._id))}>
         {wordSet.title}
       </button>
     ));
 
     if (this.props.currentWordSet.cards) {
-      console.log(this.props.currentWordSet.cards);
       const cards = this.props.currentWordSet.cards.map((card, index) => (
-        <Card key={index} term={card.term} def={card.definition} />
+        <Card key={card._id} id={card._id} term={card.term} def={card.definition} />
       ));
 
       return (
@@ -49,7 +48,7 @@ class WordSetPage extends React.Component {
               }
               {wordSets}
               <button onClick={() => this.props.dispatch(createWordSet(this.props.currentUser.username))}>New list</button>
-              <button onClick={() => this.props.dispatch(createCard(this.props.currentWordSet._id, this.props.currentUser.username))}>New card</button>
+              <button onClick={() => this.props.dispatch(createCard(this.props.currentWordSet._id))}>New card</button>
               {cards}
               <Link to={"/game/" + this.props.match.params.id}><button>Play with this word set</button></Link>
               <button onClick={
