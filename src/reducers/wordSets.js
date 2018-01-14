@@ -72,6 +72,15 @@ const wordSets = (state=initialState, action) => {
           cards: state.currentWordSet.cards.map(card => card._id === action.cardID ? Object.assign(card, action.updatedCard) : card)
         }
       };
+    case "DELETE_CARD_SUCCESS":
+      return {
+        ...state,
+        currentWordSet: {
+          ...state.currentWordSet,
+          cards: state.currentWordSet.cards.filter(card => card._id !== action.card._id)
+        }
+        // cards: state.cards.filter(card => card._id !== action.cardID)
+      };
     default:
       return state;
   }

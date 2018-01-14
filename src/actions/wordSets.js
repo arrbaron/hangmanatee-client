@@ -69,6 +69,11 @@ export const editCardSuccess = (updatedCard, wordSetID, cardID) => ({
   cardID
 });
 
+export const deleteCardSuccess = card => ({
+  type: "DELETE_CARD_SUCCESS",
+  card
+});
+
 export const createWordSet = currentUser => {
   return dispatch => {
     fetch(`${API_BASE_URL}/wordset/${currentUser}/`, {
@@ -204,6 +209,24 @@ export const editCard = (showTerm, newText, wordSetID, cardID) => {
         dispatch(editCardSuccess(json, wordSetID, cardID))
         dispatch(showCardEdit(false, cardID))
         dispatch(flipCard(showTerm, cardID))
+      })
+      .catch(err => {
+        console.log(err)
+      })
+  };
+};
+
+export const deleteCard = (wordSetID, cardID) => {
+  return dispatch => {
+    fetch(`${API_BASE_URL}/wordset/${wordSetID}/cards/${cardID}`, {
+      method: "DELETE",
+      headers: {
+        "Content-Type": "application/json"
+      },
+    })
+      .then(response => response.json())
+      .then(json => {
+        dispatch(deleteCardSuccess(json))
       })
       .catch(err => {
         console.log(err)

@@ -1,6 +1,6 @@
 import React from "react";
 import { connect } from "react-redux";
-import { showCardEdit, flipCard, editCard } from "../actions/wordSets";
+import { showCardEdit, flipCard, editCard, deleteCard } from "../actions/wordSets";
 import "../styles/Card.css";
 
 const Card = props => {
@@ -36,7 +36,7 @@ const Card = props => {
           </form>
         }
         <button onClick={() => props.dispatch(flipCard(!showTerm, props.id))}>Flip</button>
-        <button>Delete</button>
+        <button onClick={() => props.dispatch(deleteCard(props.currentWordSet._id, props.id))}>Delete</button>
       </div>
     )
   }
