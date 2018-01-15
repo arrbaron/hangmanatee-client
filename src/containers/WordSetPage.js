@@ -11,7 +11,6 @@ import "../styles/WordSetPage.css";
 class WordSetPage extends React.Component {
   handleEditTitleSubmit(event) {
     event.preventDefault();
-    // LOOK AT THE LINE BELOW
     const newTitle = event.target.newTitle.value;
     this.props.dispatch(editTitle(newTitle, this.props.currentWordSet._id));
   }
@@ -29,7 +28,7 @@ class WordSetPage extends React.Component {
 
     if (this.props.currentWordSet.cards) {
       const cards = this.props.currentWordSet.cards.map((card, index) => (
-        <Card key={card._id} id={card._id} term={card.term} def={card.definition} />
+        <Card key={index} id={card._id} term={card.term} def={card.definition} />
       ));
 
       return (
