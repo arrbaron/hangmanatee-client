@@ -10,7 +10,13 @@ const initialState = {
 };
 
 const game = (state=initialState, action) => {
-  return state;
+  switch(action.type) {
+    case "START_GAME":
+      const card = action.currentWordSet.cards.find(card => card._id === action.cardID);
+      return { ...state, playing: true, currentCard: card, guesses: [], guessesLeft: 0 };
+    default:
+      return state
+  }
 };
 
 export default game;
