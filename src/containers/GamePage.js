@@ -53,7 +53,8 @@ const mapStateToProps = state => ({
   currentCard: state.game.currentCard,
   guesses: state.game.guesses,
   guessesLeft: state.game.guessesLeft,
-  cards: state.wordSets.wordSets[0].cards
+  // cards: state.wordSets.sets[0].cards
+  cards: state.wordSets.currentWordSet.cards
 });
 
 export default connect(mapStateToProps)(GamePage);

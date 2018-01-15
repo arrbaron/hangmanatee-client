@@ -1,17 +1,11 @@
 import React from "react";
 import { connect } from "react-redux";
+import { Link } from "react-router-dom";
 import { showCardEdit, flipCard, editCard, deleteCard } from "../actions/wordSets";
+import { startGame } from "../actions/game"
 import "../styles/Card.css";
 
 const Card = props => {
-  const showEdit = props.cards.find(card => (
-    card._id === props.id
-  )).showEdit;
-  
-  const showTerm = props.cards.find(card => (
-    card._id === props.id
-  )).showTerm;
-
   if (props.playing) {
     return (
       <div className="card">
@@ -19,10 +13,18 @@ const Card = props => {
       </div>
     )
   } else {
+    const showEdit = props.cards.find(card => (
+      card._id === props.id
+    )).showEdit;
+
+    const showTerm = props.cards.find(card => (
+      card._id === props.id
+    )).showTerm;
+    
     return (
       <div className="card">
         <p>{showTerm ? `Term: ${props.term}` : `Definition: ${props.def}`}</p>
-        <button>Play</button>
+        <Link to="/game/misc"><button onClick={() => props.dispatch(startGame(props.id, props.currentWordSet))}>Play</button></Link>
         <button onClick={() => props.dispatch(showCardEdit(!showEdit, props.id))}>Edit</button>
         { showEdit && 
           <form onSubmit={(e) => {
