@@ -79,7 +79,6 @@ const wordSets = (state=initialState, action) => {
           ...state.currentWordSet,
           cards: state.currentWordSet.cards.filter(card => card._id !== action.card._id)
         }
-        // cards: state.cards.filter(card => card._id !== action.cardID)
       };
     default:
       return state;

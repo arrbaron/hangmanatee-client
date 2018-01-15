@@ -6,13 +6,16 @@ import { startGame } from "../actions/game"
 import "../styles/Card.css";
 
 const Card = props => {
-  if (props.playing) {
+  if (props.status === "win" || props.status === "lose") {
     return (
       <div className="card">
+      {/* show the definition choosing here */}
         <p>{props.def}</p>
       </div>
     )
-  } else {
+  } else if (props.status === "playing") {
+    return null;
+  } else if (props.status === "idle") {
     const showEdit = props.cards.find(card => (
       card._id === props.id
     )).showEdit;
@@ -24,7 +27,10 @@ const Card = props => {
     return (
       <div className="card">
         <p>{showTerm ? `Term: ${props.term}` : `Definition: ${props.def}`}</p>
-        <Link to="/game/misc"><button onClick={() => props.dispatch(startGame(props.id, props.currentWordSet))}>Play</button></Link>
+        <Link to="/game/misc"><button onClick={() => {
+          const displayedWord = props.term.trim().split("").map(letter => "_");
+          props.dispatch(startGame(props.id, displayedWord, props.currentWordSet))}}>
+          Play</button></Link>
         <button onClick={() => props.dispatch(showCardEdit(!showEdit, props.id))}>Edit</button>
         { showEdit && 
           <form onSubmit={(e) => {
@@ -45,7 +51,7 @@ const Card = props => {
 };
 
 const mapStateToProps = state => ({
-  playing: state.game.playing,
+  status: state.game.status,
   cards: state.wordSets.currentWordSet.cards,
   currentWordSet: state.wordSets.currentWordSet
 });
