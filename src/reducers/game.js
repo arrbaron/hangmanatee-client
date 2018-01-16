@@ -33,7 +33,7 @@ const game = (state=initialState, action) => {
     case "CHOOSE_ANSWER":
       return { ...state, message: action.message, answerChosen: true };
     case "RESET_GAME":
-      return Object.assign(state, initialState);
+      return initialState;
     default:
       return state;
   }

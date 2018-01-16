@@ -71,10 +71,12 @@ export const deleteCardSuccess = card => ({
 
 export const createWordSet = currentUser => {
   return dispatch => {
+    const authToken = localStorage.getItem("token");
     fetch(`${API_BASE_URL}/wordset/${currentUser}/`, {
       method: "POST",
       headers: {
-        "Content-Type": "application/json"
+        "Content-Type": "application/json",
+        Authorization: `Bearer ${authToken}`
       },
     })
     .then(response => response.json())
@@ -129,10 +131,12 @@ export const changeWordSet = id => {
 
 export const deleteWordSet = (id, currentUser) => {
   return dispatch => {
+    const authToken = localStorage.getItem("token");
     fetch(`${API_BASE_URL}/wordset/${id}`, {
       method: "DELETE",
       headers: {
-        "Content-Type": "application/json"
+        "Content-Type": "application/json",
+        Authorization: `Bearer ${authToken}`
       },
     })
       .then(response => response.json())
@@ -149,10 +153,12 @@ export const deleteWordSet = (id, currentUser) => {
 export const editTitle = (newTitle, id) => {
   const title = newTitle;
   return dispatch => {
+    const authToken = localStorage.getItem("token");
     fetch(`${API_BASE_URL}/wordset/${id}`, {
       method: "PUT",
       headers: {
-        "Content-Type": "application/json"
+        "Content-Type": "application/json",
+        Authorization: `Bearer ${authToken}`
       },
       body: JSON.stringify({ title })
     })
@@ -170,10 +176,12 @@ export const editTitle = (newTitle, id) => {
 
 export const createCard = id => {
   return dispatch => {
+    const authToken = localStorage.getItem("token");
     fetch(`${API_BASE_URL}/wordset/${id}/cards`, {
       method: "POST",
       headers: {
-        "Content-Type": "application/json"
+        "Content-Type": "application/json",
+        Authorization: `Bearer ${authToken}`
       },
     })
       .then(response => response.json())
@@ -191,10 +199,12 @@ export const editCard = (showTerm, newText, wordSetID, cardID) => {
   const updatedData = showTerm ? { term: newText } : { definition: newText };
 
   return dispatch => {
+    const authToken = localStorage.getItem("token");
     fetch(`${API_BASE_URL}/wordset/${wordSetID}/cards/${cardID}`, {
       method: "PUT",
       headers: {
-        "Content-Type": "application/json"
+        "Content-Type": "application/json",
+        Authorization: `Bearer ${authToken}`
       },
       body: JSON.stringify(updatedData)
     })
@@ -213,10 +223,12 @@ export const editCard = (showTerm, newText, wordSetID, cardID) => {
 
 export const deleteCard = (wordSetID, cardID) => {
   return dispatch => {
+    const authToken = localStorage.getItem("token");
     fetch(`${API_BASE_URL}/wordset/${wordSetID}/cards/${cardID}`, {
       method: "DELETE",
       headers: {
-        "Content-Type": "application/json"
+        "Content-Type": "application/json",
+        Authorization: `Bearer ${authToken}`
       },
     })
       .then(response => response.json())
