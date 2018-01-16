@@ -23,3 +23,12 @@ export const gameOver = status => ({
   type: "GAME_OVER",
   status
 });
+
+export const chooseAnswer = message => ({
+  type: "CHOOSE_ANSWER",
+  message
+});
+
+export const resetGame = () => ({
+  type: "RESET_GAME"
+});
