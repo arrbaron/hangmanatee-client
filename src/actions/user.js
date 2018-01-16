@@ -13,12 +13,9 @@ export const loginUserSuccess = (token, user) => ({
   user
 });
 
-export const logoutUser = () => {
-  history.push("/");
-  return ({
-    type: "LOGOUT_USER"
-  });
-};
+export const logoutUser = () => ({
+  type: "LOGOUT_USER"
+});
 
 export const registerUser = (username, password) => {
   return (dispatch) => {

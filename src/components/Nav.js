@@ -2,13 +2,14 @@ import React from "react";
 import { connect } from "react-redux";
 import { Link } from "react-router-dom";
 import { logoutUser } from "../actions/user";
+import { clearSets } from "../actions/wordSets";
 import "../styles/Nav.css";
 
 const Nav = props => {
   const handleLogout = () => {
     localStorage.removeItem("token");
     props.dispatch(logoutUser());
-    // TODO - redirect
+    props.dispatch(clearSets());
   };
 
   if (props.currentUser.username) {
@@ -18,7 +19,7 @@ const Nav = props => {
           <li>Hello, {props.currentUser.username}!</li>
           {/* <Link to="/game/misc"><li>Play</li></Link> */}
           <Link to="/word-set/misc"><li>Wordsets</li></Link>
-          <button onClick={() => handleLogout()}>Logout</button>
+          <Link to="/" onClick={() => handleLogout()}><li>Logout</li></Link>
         </ul>
       </nav>
     )
