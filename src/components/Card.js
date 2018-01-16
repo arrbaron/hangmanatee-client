@@ -2,14 +2,29 @@ import React from "react";
 import { connect } from "react-redux";
 import { Link } from "react-router-dom";
 import { showCardEdit, flipCard, editCard, deleteCard } from "../actions/wordSets";
-import { startGame } from "../actions/game"
+import { startGame, chooseAnswer } from "../actions/game"
 import "../styles/Card.css";
 
 const Card = props => {
+  const submitAnswer = () => {
+    let message = "";
+
+    if (props.def === props.currentCard.definition) {
+      message = `Correct! ${props.currentCard.term} means ${props.currentCard.definition}!`;
+    } else {
+      message = `Sorry. ${props.currentCard.term} actually means ${props.currentCard.definition}.`;
+    }
+    props.dispatch(chooseAnswer(message));
+  };
+  
+  if (props.answerChosen) {
+    console.log("nothing to display!");
+    return null;
+  } 
+
   if (props.status === "win" || props.status === "lose") {
     return (
-      <div className="card">
-      {/* show the definition choosing here */}
+      <div className="card card--answer" onClick={() => submitAnswer()}>
         <p>{props.def}</p>
       </div>
     )
@@ -52,8 +67,10 @@ const Card = props => {
 
 const mapStateToProps = state => ({
   status: state.game.status,
+  currentCard: state.game.currentCard,
   cards: state.wordSets.currentWordSet.cards,
-  currentWordSet: state.wordSets.currentWordSet
+  currentWordSet: state.wordSets.currentWordSet,
+  answerChosen: state.game.answerChosen
 });
 
 export default connect(mapStateToProps)(Card);

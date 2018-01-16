@@ -15,11 +15,6 @@ export const changeWordSetSuccess = wordSet => ({
   wordSet
 });
 
-export const getLastWordSetSuccess = wordSet => ({
-  type: "GET_LAST_WORDSET_SUCCESS",
-  wordSet
-});
-
 export const deleteWordSetSuccess = wordSet => ({
   type: "DELETE_WORDSET_SUCCESS",
   wordSet
