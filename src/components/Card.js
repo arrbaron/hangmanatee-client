@@ -2,7 +2,15 @@ import React from "react";
 import { connect } from "react-redux";
 import { Link } from "react-router-dom";
 import { showCardEdit, flipCard, editCard, deleteCard } from "../actions/wordSets";
-import { startGame, chooseAnswer } from "../actions/game"
+import { startGame, chooseAnswer } from "../actions/game";
+import Paper from 'material-ui/Paper';
+import TextField from "material-ui/TextField";
+import FlatButton from "material-ui/FlatButton";
+import IconButton from 'material-ui/IconButton';
+import Flip from 'material-ui/svg-icons/image/flip';
+import Delete from 'material-ui/svg-icons/action/delete';
+import PlayArrow from 'material-ui/svg-icons/av/play-arrow';
+import FavIcon from './FavIcon';
 import "../styles/Card.css";
 
 const Card = props => {
@@ -39,28 +47,56 @@ const Card = props => {
       card._id === props.id
     )).showTerm;
     
-    return (
-      <div className="card">
-        <p>{showTerm ? `Term: ${props.term}` : `Definition: ${props.def}`}</p>
-        <Link to="/game/misc"><button onClick={() => {
-          const displayedWord = props.term.trim().split("").map(letter => "_");
-          props.dispatch(startGame(props.id, displayedWord, props.currentWordSet))}}>
-          Play</button></Link>
-        <button onClick={() => props.dispatch(showCardEdit(!showEdit, props.id))}>Edit</button>
-        { showEdit && 
-          <form onSubmit={(e) => {
-            e.preventDefault();
-            props.dispatch(editCard(showTerm, e.target.newText.value, props.currentWordSet._id, props.id));
+    const text = () => {
+      if (showEdit) {
+        return (
+          <div>
+            <h5>{showTerm ? "Term" : "Definition"}</h5>
+            <form className="card__form" onSubmit={(e) => {
+              e.preventDefault();
+              props.dispatch(editCard(showTerm, e.target.newText.value, props.currentWordSet._id, props.id));
             }
-          }>
-            <input type="text" name="newText" />
-            <p>Beep</p>
-            <button>Submit</button>
-          </form>
+            }>
+              <TextField type="text" name="newText" autoFocus onFocus={e => {
+                let val = e.target.value;
+                e.target.value = "";
+                e.target.value = val;
+              }}
+              defaultValue={showTerm ? props.term : props.def} />
+              <FlatButton type="submit" label="OK" />
+            </form>
+          </div>
+        );
+      } else {
+        return (
+          <div>
+            <h5>{showTerm ? "Term" : "Definition"}</h5>
+            <p onClick={() => props.dispatch(showCardEdit(!showEdit, props.id))}>
+              {showTerm ? props.term : props.def}
+            </p>
+          </div>
+        );
+      }
+    };
+
+    return (
+      <Paper onClick={() => console.log("clicky")} className="card" zDepth={3}>
+        {text()}
+        <Link to="/game/misc" ><PlayArrow className="card__icon card__icon--play" onClick={() => {
+          const displayedWord = props.term.trim().split("").map(letter => "_");
+          props.dispatch(startGame(props.id, displayedWord, props.currentWordSet))}} />
+        </Link>
+        <IconButton className="card__icon card__icon--flip" tooltip="flip" onClick={() => {
+          props.dispatch(showCardEdit(false, props.id))
+          props.dispatch(flipCard(!showTerm, props.id))
         }
-        <button onClick={() => props.dispatch(flipCard(!showTerm, props.id))}>Flip</button>
-        <button onClick={() => props.dispatch(deleteCard(props.currentWordSet._id, props.id))}>Delete</button>
-      </div>
+        }> 
+          <Flip />
+        </IconButton>
+        <IconButton className="card__icon card__icon--delete" tooltip="delete" onClick={() => props.dispatch(deleteCard(props.currentWordSet._id, props.id))} >
+          <Delete />
+        </IconButton>
+      </Paper>
     )
   }
 };

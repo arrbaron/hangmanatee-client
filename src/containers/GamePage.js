@@ -3,8 +3,7 @@ import React, { Component } from "react";
 import { connect } from "react-redux";
 // import { Link } from "react-router-dom";
 import { correctGuess, incorrectGuess, gameOver, resetGame } from "../actions/game";
-import Nav from "../components/Nav";
-import Header from "../components/Header";
+import TopNav from "../components/TopNav";
 import Footer from "../components/Footer";
 import Card from "../components/Card";
 import "../styles/GamePage.css";
@@ -78,8 +77,7 @@ class GamePage extends Component {
     if (this.props.status === "playing" || this.props.status === "idle") {
       return (
         <section>
-          <Nav username="username" />
-          <Header />
+          <TopNav />
           <main role="main">
             <div className="game">
               <h3>Category: {this.props.currentWordSet.title.toUpperCase()}</h3>
@@ -97,8 +95,7 @@ class GamePage extends Component {
     } else if (this.props.status === "win") {
       return (
         <section>
-          <Nav username="username" />
-          <Header />
+          <TopNav />
           <main role="main">
             <div className="game">
               <h3>Category: {this.props.currentWordSet.title.toUpperCase()}</h3>
@@ -119,8 +116,7 @@ class GamePage extends Component {
     } else if (this.props.status === "lose") {
       return (
         <section>
-          <Nav username="username" />
-          <Header />
+          <TopNav />
           <main role="main">
             <div className="game">
               <h3>Category: {this.props.currentWordSet.title.toUpperCase()}</h3>

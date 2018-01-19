@@ -1,12 +1,12 @@
 import React from "react";
-import Nav from "../components/Nav";
+import TopNav from "../components/TopNav";
 import Header from "../components/Header";
 import Footer from "../components/Footer";
 import RegisterForm from "../components/RegisterForm";
 
 const RegisterPage = () => (
   <section>
-    <Nav />
+    <TopNav />
     <Header />
     <RegisterForm />
     <Footer />

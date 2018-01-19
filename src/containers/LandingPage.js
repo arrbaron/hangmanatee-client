@@ -5,6 +5,7 @@ import LandingSection from "../components/LandingSection";
 import RegisterForm from "../components/RegisterForm";
 import Footer from "../components/Footer";
 import '../styles/App.css';
+import TopNav from '../components/TopNav';
 
 const LandingPage = props => {
   const landingSectionsRaw = [
@@ -40,7 +41,8 @@ const LandingPage = props => {
   
   return (
     <div className="App">
-      <Nav />
+      <TopNav />
+      {/* <Nav /> */}
       <Header />
       {landingSections}
       <RegisterForm />

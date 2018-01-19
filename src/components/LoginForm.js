@@ -1,6 +1,8 @@
 import React from "react";
 import { connect } from "react-redux";
 import { loginUser } from "../actions/user";
+import FlatButton from "material-ui/FlatButton";
+import TextField from "material-ui/TextField";
 import "../styles/LoginForm.css";
 
 class LoginForm extends React.Component {
@@ -17,10 +19,10 @@ class LoginForm extends React.Component {
       <form className="login-form" onSubmit={event => this.handleSubmit(event)}>
         <h3>Log in</h3>
         <label>Username</label>
-        <input type="text" name="username" placeholder="username" />
+        <TextField type="text" name="username" floatingLabelText="username" />
         <label>Password</label>
-        <input type="password" name="password" placeholder="password" />
-        <button>Log in</button>
+        <TextField type="password" name="password" floatingLabelText="password" />
+        <FlatButton type="submit" label="Log in" />
       </form>
     )
   }
