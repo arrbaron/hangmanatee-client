@@ -3,4 +3,56 @@
   background-color: darkgrey;
   max-width: 1040px;
   margin: 0 auto 0 auto;
+  position: relative !important;
+}
+
+.word-set h3 {
+  padding-top: 20px;
+  position: absolute !important;
+  top: 0;
+  width: 100% !important;
+  text-align: center;
+}
+
+.word-set button {
+  display: inline;
+  /* padding: 0; */
+}
+
+.word-set__icon--more {
+  /* padding: 0 !important; */
+  /* display: inline !important; */
+  /* position: absolute !important; */
+  left: 0;
+}
+
+.word-set__form {
+  /* position: absolute !important; */
+  top: 0;
+  font-weight: bold;
+  width: 100%;
+}
+
+.word-set__form div {
+  width: 100% !important;
+}
+
+.word-set__form div input {
+  text-align: center !important;
+  /* position: absolute !important; */
+  top: 100px;
+  left: 0;
+  top: 0;
+  display: inline !important;
+}
+
+.word-set__form div hr {
+  display: none !important;
+}
+
+.word-set__form__button {
+  display: inline !important;
+  position: absolute !important;
+  right: 25%;
+  top: 15%;
 }

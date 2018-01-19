@@ -1,12 +1,12 @@
 import React from "react";
-import Nav from "../components/Nav";
+import TopNav from "../components/TopNav";
 import Header from "../components/Header";
 import Footer from "../components/Footer";
 import LoginForm from "../components/LoginForm";
 
 const LoginPage = () => (
   <section>
-    <Nav />
+    <TopNav />
     <Header />
     <LoginForm />
     <Footer />

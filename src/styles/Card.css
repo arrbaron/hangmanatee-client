@@ -4,10 +4,52 @@
   background-color: lightgrey;
   margin: 20px auto 0 auto;
   position: relative;
+
 }
 
 .card p {
-  position: relative;
-  top: 40%;
+  position: absolute;
+  width: 100% !important;
+  top: 35%;
+  text-align: center;
   font-weight: bold;
+}
+
+.card__icon {
+  position: absolute !important;
+}
+
+.card__icon--flip {
+  top: 0;
+  right: 0;
+}
+
+.card__icon--delete {
+  bottom: 0;
+  right: 0;
+}
+
+.card__icon--play {
+  bottom: 13px;
+  left: 5px;
+}
+
+.card__form {
+  position: absolute;
+  top: 35.5%;
+  font-weight: bold;
+  width: 100%;
+}
+
+.card__form div {
+  width: 100% !important;
+}
+
+.card__form div input {
+  text-align: center !important;
+}
+
+.card__form div div hr {
+  width: 100% !important;
+  display: none !important;
 }

@@ -15,3 +15,15 @@ nav li {
   display: inline-block;
   margin: 0 10px 0 0;
 }
+
+.nav-logo {
+  font-family: "Indie Flower", cursive;
+  font-size: 1.5em;
+  position: absolute;
+  left: 0;
+  top: 15%;
+}
+
+.nav-logo__title {
+  color: inherit;
+}

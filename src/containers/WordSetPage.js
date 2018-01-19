@@ -4,10 +4,14 @@ import { Link } from "react-router-dom";
 import { sample } from "lodash";
 import { createWordSet, changeWordSet, deleteWordSet, showTitleEdit, editTitle, createCard, getLastWordSet } from "../actions/wordSets";
 import { startGame } from "../actions/game";
-import Nav from "../components/Nav";
-import Header from "../components/Header";
+import TopNav from "../components/TopNav";
 import Footer from "../components/Footer";
 import Card from "../components/Card";
+import WordSetDrawer from "../components/WordSetDrawer";
+import MoreHoriz from 'material-ui/svg-icons/navigation/more-horiz';
+import IconButton from 'material-ui/IconButton';
+import TextField from "material-ui/TextField";
+import FlatButton from "material-ui/FlatButton";
 import "../styles/WordSetPage.css";
 
 class WordSetPage extends React.Component {
@@ -22,12 +26,23 @@ class WordSetPage extends React.Component {
   }
     
   render() {
-    const wordSets = this.props.wordSets.map((wordSet, index) => (
-      <button key={wordSet._id} onClick={
-        () => this.props.dispatch(changeWordSet(wordSet._id))}>
-        {wordSet.title}
-      </button>
-    ));
+    const title = () => {
+      if (this.props.showTitleEdit) {
+        return (
+          <form className="word-set__form" onSubmit={event => this.handleEditTitleSubmit(event)}>
+            <TextField type="text" name="newTitle" autoFocus onFocus={e => {
+              let val = e.target.value;
+              e.target.value = "";
+              e.target.value = val;
+            }}
+            defaultValue={this.props.currentWordSet.title} />
+            <FlatButton className="word-set__form__button" type="submit" label="OK" />
+          </form>
+        );
+      } else {
+        return <h3 onClick={() => this.props.dispatch(showTitleEdit(!this.props.showTitleEdit))}>{this.props.currentWordSet.title}</h3>;
+      }
+    }
 
     if (this.props.currentWordSet.cards) {
       const cards = this.props.currentWordSet.cards.map((card, index) => (
@@ -36,21 +51,12 @@ class WordSetPage extends React.Component {
 
       return (
         <section>
-          <Nav />
-          <Header />
+          <TopNav />
           <main role="main">
             <div className="word-set">
-              <h3>{this.props.currentWordSet.title}</h3>
-              <button onClick={() => this.props.dispatch(showTitleEdit(!this.props.showTitleEdit))}>Edit title</button>
-              {this.props.showTitleEdit &&
-                <form onSubmit={event => this.handleEditTitleSubmit(event)}>
-                  <input type="text" name="newTitle" placeholder={this.props.currentWordSet.title} required/>
-                  <button>Submit</button>
-                </form>
-              }
-              {wordSets}
-              <button onClick={() => this.props.dispatch(createWordSet(this.props.currentUser.username))}>New list</button>
-              <button onClick={() => this.props.dispatch(createCard(this.props.currentWordSet._id))}>New card</button>
+              <WordSetDrawer wordSets={this.props.wordSets} username={this.props.username}/>
+              {title()}
+              {/* <button onClick={() => this.props.dispatch(createCard(this.props.currentWordSet._id))}>New card</button> */}
               {cards}
               <Link to={"/game/" + this.props.match.params.id}><button onClick={() => {
                 const randomCard = sample(this.props.currentWordSet.cards);
@@ -70,10 +76,12 @@ class WordSetPage extends React.Component {
     } else {
         return (
           <section>
-            <Nav />
-            <Header />
+            <TopNav />
             <main role="main">
               <div className="word-set">
+                <IconButton className="word-set__icon--more">
+                  <MoreHoriz />
+                </IconButton>
                 <h3>New wordset</h3>
                 <button onClick={event => this.handleClick(event)}>New list</button>
                 <button>New card</button>

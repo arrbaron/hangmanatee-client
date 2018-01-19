@@ -1,0 +1,14 @@
+header img {
+  width: 100px;
+  height: 100px;
+  margin-bottom: 0;
+}
+
+header h1 {
+  margin-top: 0;
+  margin-bottom: 0;
+}
+
+header h2 {
+  margin-top: 0;
+}

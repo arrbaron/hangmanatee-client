@@ -2,6 +2,8 @@ import React from "react";
 import { connect } from "react-redux";
 import { Link } from "react-router-dom";
 import { registerUser } from "../actions/user";
+import FlatButton from "material-ui/FlatButton";
+import TextField from "material-ui/TextField";
 import "../styles/RegisterForm.css";
 
 class RegisterForm extends React.Component {
@@ -18,15 +20,11 @@ class RegisterForm extends React.Component {
     return (    
       <form className="register-form" onSubmit={event => this.handleSubmit(event)}>
         <h3>Get started</h3>
-        <label>First name</label>
-        <input type="text" name="firstName" placeholder="first name" />
-        <label>Last name</label>
-        <input type="text" name="lastName" placeholder="last name" />
         <label>Username</label>
-        <input type="text" name="username" placeholder="username" />
+        <TextField type="text" name="username" floatingLabelText="username" />
         <label>Password</label>
-        <input type="password" name="password" placeholder="password" />
-        <button>Sign up</button>
+        <TextField type="password" name="password" floatingLabelText="password" />
+        <FlatButton type="submit" label="Sign up"/>
         <p>Already signed up? <Link to="/login">Login!</Link></p>
       </form>
     )
