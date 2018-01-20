@@ -16,11 +16,6 @@
   margin: 0 3px 5px 3px;
 }
 
-.game__letter:visited {
-  background-color: cornflowerblue !important;
-  color: white !important;
-}
-
 .game__word {
   font-size: 2.5em;
 }
@@ -38,7 +33,9 @@
     max-width: 800px !important;
   }
 
-  .game__letter {
-    
+  .game .card {
+    display: inline-block !important;
+    margin-right: 20px;
+    cursor: pointer;
   }
 }

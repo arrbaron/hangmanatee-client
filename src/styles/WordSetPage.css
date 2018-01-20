@@ -36,6 +36,7 @@
 
 .word-set__form div {
   width: 100% !important;
+  position: relative !important;
 }
 
 .word-set__form div input {
@@ -44,18 +45,12 @@
   top: 100px;
   left: 0;
   top: 0;
+  font-size: 1.17em !important;
   display: inline !important;
 }
 
 .word-set__form div hr {
   display: none !important;
-}
-
-.word-set__form__button {
-  display: inline !important;
-  position: absolute !important;
-  right: 25%;
-  top: 15%;
 }
 
 .word-set__button--add {
@@ -81,8 +76,21 @@
     /* flex-direction: column; */
   }
 
-  .word-set .card {
-    /* flex: 1; */
-    /* display: inline-block !important; */
+  .word-set {
+    min-height: 200px;
+    background-color: white;
+    max-width: 1040px;
+    margin: 0 auto 0 auto;
+    position: static !important;
+  }
+
+  .word-set__form__button {
+    /* position: absolute !important; */
+    top: 2%;
+  }
+
+  .word-set__button--more {
+    position: absolute !important;
+    left: 0;
   }
 }

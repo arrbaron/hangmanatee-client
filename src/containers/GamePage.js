@@ -61,20 +61,15 @@ class GamePage extends Component {
 
     const alphabet = ["A", "B", "C", "D", "E", "F", "G", "H", "I", "J", "K", "L", "M", "N", "O", "P", "Q", "R", "S", "T", "U", "V", "W", "X", "Y", "Z"];
     const letters = alphabet.map((letter, index) => {
-      let disabled = "";
-      return <RaisedButton className={`game__letter${disabled}`} label={letter} key={letter} onClick={() => {
+      let isDisabled = false;
+      if (this.props.guesses.includes(letter)) {
+        isDisabled = true;
+      }
+      return <RaisedButton className="game__letter" disabled={isDisabled} label={letter} key={letter} onClick={() => {
         guessLetter(letter);
-        let clickedLetter = letters.find(l => l.props.label === letter);
-        console.log(clickedLetter);
-        disabled = "game__letter--disabled";
-        // clickedLetter.props.className = "game__letter--disabled";
-        // clickedLetter = className("game__letter--disabled");
-        // console.log(clickedLetter);
-        // "game__letter", "game__letter--disabled"
       }}/>
-      // return <LetterButton label={letter} key={letter} onClick={guessLetter(letter)} />
     });
-    const wrongAnswers = 2;
+    const wrongAnswers = 3;
     const answerChoices = sampleSize(filter(this.props.cards, o => { return o.term !== this.props.currentCard.term }), wrongAnswers);
     answerChoices.push(this.props.currentCard);
     const shuffledChoices = shuffle(answerChoices);
@@ -92,7 +87,6 @@ class GamePage extends Component {
               <Progress index={7 - this.props.guessesLeft}/>
               <h3>Category: {this.props.currentWordSet.title.toUpperCase()}</h3>
               <h4>{this.props.message}</h4>
-              <p>Guesses left: {this.props.guessesLeft}</p>
               <div className="game__letters">
                 {letters}
               </div>
