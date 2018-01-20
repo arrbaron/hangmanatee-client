@@ -66,7 +66,9 @@ class WordSetPage extends React.Component {
                 }><PlayArrow /></IconButton>
                 </Link>
               }
-              {cards}
+              <div className="cards">
+                {cards}
+              </div>
               <IconButton className="word-set__button word-set__button--add" onClick={() => this.props.dispatch(createCard(this.props.currentWordSet._id))}>
                 <AddBox />
               </IconButton>

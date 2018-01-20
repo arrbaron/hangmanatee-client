@@ -67,3 +67,22 @@
 .word-set__button--play {
   padding: 0 !important;
 }
+
+@media only screen  and (min-width : 768px) {  
+  .cards {
+    display: flex !important;
+    flex-wrap: wrap;
+    text-align: left;
+    justify-content: center;
+    /* text-align: left; */
+    margin-left: auto;
+    margin-right: auto;
+
+    /* flex-direction: column; */
+  }
+
+  .word-set .card {
+    /* flex: 1; */
+    /* display: inline-block !important; */
+  }
+}
