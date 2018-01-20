@@ -6,9 +6,9 @@
 }
 
 .landing-section:nth-child(odd) {
-  background-color: darkgrey;
+  background-color:#00BCD4;
 }
 
 .landing-section:nth-child(even) {
-  background-color: lightgrey;
+  background-color: white;
 }

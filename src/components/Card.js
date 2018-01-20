@@ -10,7 +10,6 @@ import IconButton from 'material-ui/IconButton';
 import Flip from 'material-ui/svg-icons/image/flip';
 import Delete from 'material-ui/svg-icons/action/delete';
 import PlayArrow from 'material-ui/svg-icons/av/play-arrow';
-import FavIcon from './FavIcon';
 import "../styles/Card.css";
 
 const Card = props => {
@@ -32,9 +31,9 @@ const Card = props => {
 
   if (props.status === "win" || props.status === "lose") {
     return (
-      <div className="card card--answer" onClick={() => submitAnswer()}>
+      <Paper style={{ backgroundColor: "#00BCD4" }} className="card" onClick={() => submitAnswer()} zDepth={3}>
         <p>{props.def}</p>
-      </div>
+      </Paper>
     )
   } else if (props.status === "playing") {
     return null;
@@ -80,7 +79,7 @@ const Card = props => {
     };
 
     return (
-      <Paper onClick={() => console.log("clicky")} className="card" zDepth={3}>
+      <Paper style={{ backgroundColor: "#00BCD4" }} className="card" zDepth={3}>
         {text()}
         <Link to="/game/misc" ><PlayArrow className="card__icon card__icon--play" onClick={() => {
           const displayedWord = props.term.trim().split("").map(letter => "_");

@@ -1,6 +1,34 @@
 .game {
   min-height: 200px;
-  background-color: darkgrey;
+  background-color: white;
   max-width: 1040px;
   margin: 0 auto 0 auto;
+}
+
+.game__letters {
+  text-align: center !important;
+  margin-left: auto;
+  margin-right: auto;
+  width: 100%;
+}
+
+.game__letter {
+  margin: 0 3px 5px 3px;
+}
+
+.game__letter:visited {
+  background-color: cornflowerblue !important;
+  color: white !important;
+}
+
+.game__word {
+  font-size: 2.5em;
+}
+
+.game__feedback__button {
+  display: block !important;
+  margin-bottom: 20px;
+  width: 200px;
+  margin-left: auto;
+  margin-right: auto;
 }

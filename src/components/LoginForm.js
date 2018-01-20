@@ -17,11 +17,8 @@ class LoginForm extends React.Component {
   render() {
     return (
       <form className="login-form" onSubmit={event => this.handleSubmit(event)}>
-        <h3>Log in</h3>
-        <label>Username</label>
-        <TextField type="text" name="username" floatingLabelText="username" />
-        <label>Password</label>
-        <TextField type="password" name="password" floatingLabelText="password" />
+        <TextField type="text" name="username" floatingLabelText="username" required/>
+        <TextField type="password" name="password" floatingLabelText="password" required/>
         <FlatButton type="submit" label="Log in" />
       </form>
     )

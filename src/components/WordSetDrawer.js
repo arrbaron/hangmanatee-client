@@ -3,8 +3,7 @@ import { connect } from "react-redux";
 import { createWordSet, changeWordSet, deleteWordSet } from "../actions/wordSets";
 import Drawer from 'material-ui/Drawer';
 import MenuItem from 'material-ui/MenuItem';
-import RaisedButton from 'material-ui/RaisedButton';
-import MoreHoriz from 'material-ui/svg-icons/navigation/more-horiz';
+import MoreVert from 'material-ui/svg-icons/navigation/more-vert';
 import IconButton from 'material-ui/IconButton';
 import AddCircle from 'material-ui/svg-icons/content/add-circle';
 import Cancel from 'material-ui/svg-icons/navigation/cancel';
@@ -24,25 +23,27 @@ class WordSetDrawer extends React.Component {
 
   render() {
     const wordSets = this.props.wordSets.map((wordSet, index) => (
-      <MenuItem className="drawer__menu-item" key={wordSet._id}>
-        <IconButton onClick={
-          () => this.props.dispatch(deleteWordSet(wordSet._id, this.props.username))}>
-          <Cancel />
-        </IconButton>
-        <span onClick={
+      <div className="drawer" key={index}>
+        {this.props.sets.length > 1 &&
+          <IconButton onClick={
+            () => this.props.dispatch(deleteWordSet(wordSet._id, this.props.username))}>
+            <Cancel className="drawer__delete" />
+          </IconButton>
+        }
+        <MenuItem className="drawer__menu-item" key={wordSet._id} onClick={
           () => {
             console.log("I'M BEING CLICKED");
             this.props.dispatch(changeWordSet(wordSet._id))
             this.handleClose()
           }}>
           {wordSet.title}
-        </span>
-      </MenuItem>
+        </MenuItem>
+      </div>
     ));
     return (
       <div>
-        <IconButton className="word-set__icon--more" onClick={this.handleToggle}>
-          <MoreHoriz />
+        <IconButton className="word-set__button--more" onClick={this.handleToggle}>
+          <MoreVert />
         </IconButton>
         <Drawer
           docked={false}
@@ -62,4 +63,8 @@ class WordSetDrawer extends React.Component {
   }
 }
 
-export default connect()(WordSetDrawer);
+const mapStateToProps = state => ({
+  sets: state.wordSets.sets
+});
+
+export default connect(mapStateToProps)(WordSetDrawer);
