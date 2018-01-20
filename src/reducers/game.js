@@ -15,7 +15,7 @@ const game = (state=initialState, action) => {
   switch(action.type) {
     case "START_GAME":
       const card = action.currentWordSet.cards.find(card => card._id === action.cardID);
-      return { ...state, status: "playing", currentCard: card, guesses: [], guessesLeft: 7, displayedWord: action.displayedWord };
+      return { ...state, status: "playing", currentCard: card, guesses: [], guessesLeft: 7, displayedWord: action.displayedWord, answerChosen: false, message: "" };
     case "CORRECT_GUESS":
       return {
         ...state,

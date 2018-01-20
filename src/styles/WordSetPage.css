@@ -1,6 +1,6 @@
 .word-set {
   min-height: 200px;
-  background-color: darkgrey;
+  background-color: white;
   max-width: 1040px;
   margin: 0 auto 0 auto;
   position: relative !important;
@@ -8,7 +8,8 @@
 
 .word-set h3 {
   padding-top: 20px;
-  position: absolute !important;
+  margin-top: 0;
+  /* position: absolute !important; */
   top: 0;
   width: 100% !important;
   text-align: center;
@@ -19,10 +20,10 @@
   /* padding: 0; */
 }
 
-.word-set__icon--more {
+.word-set__button--more {
   /* padding: 0 !important; */
   /* display: inline !important; */
-  /* position: absolute !important; */
+  position: absolute !important;
   left: 0;
 }
 
@@ -55,4 +56,14 @@
   position: absolute !important;
   right: 25%;
   top: 15%;
+}
+
+.word-set__button--add {
+  display: block !important;
+  margin-left: auto !important;
+  margin-right: auto !important;
+}
+
+.word-set__button--play {
+  padding: 0 !important;
 }

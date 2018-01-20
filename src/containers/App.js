@@ -22,7 +22,7 @@ class App extends Component {
   render() {
     return (
       <Router history={history}>
-        <div className="app">
+        <div className="app" >
           <Route exact path="/" component={LandingPage} />
           <Route exact path="/register" component={RegisterPage} />
           <Route exact path="/login" component={LoginPage} />

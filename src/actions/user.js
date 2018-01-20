@@ -1,6 +1,6 @@
 import history from "../history";
 import { API_BASE_URL } from "../config";
-import { getWordSets, clearSets } from "./wordSets";
+import { getWordSets, clearSets, createWordSet } from "./wordSets";
 
 const registerUserSuccess = user => ({
   type: "REGISTER_USER_SUCCESS",
@@ -27,7 +27,9 @@ export const registerUser = (username, password) => {
       body: JSON.stringify({username, password})
     })
     .then(response => response.json())
+    .then(dispatch(clearSets))
     .then(json => dispatch(registerUserSuccess(json)))
+    .then(() => dispatch(createWordSet(username)))
     .then(history.push("/login"))
     .catch(err => console.log(err))
   };
@@ -43,8 +45,6 @@ export const loginUser = (username, password) => {
       body: JSON.stringify({username, password})
     })
     .then(response => response.json())
-    .then(dispatch(clearSets))
-    .then(dispatch(getWordSets(username)))
     .then(json => {
       const { authToken } = json;
       localStorage.setItem("token", authToken);
@@ -57,6 +57,8 @@ export const loginUser = (username, password) => {
         }
       ))
     })
+    .then(dispatch(clearSets))
+    .then(dispatch(getWordSets(username)))
     .then(history.push("/word-set/misc"))
     .catch(err => console.log(err))
   };

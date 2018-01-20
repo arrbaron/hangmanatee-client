@@ -7,8 +7,10 @@ header img {
 header h1 {
   margin-top: 0;
   margin-bottom: 0;
+  font-family: "Life Savers", cursive;
 }
 
 header h2 {
   margin-top: 0;
+  /* font-family: "Life Savers", cursive; */
 }

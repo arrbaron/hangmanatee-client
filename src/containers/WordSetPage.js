@@ -2,13 +2,14 @@ import React from "react";
 import { connect } from "react-redux";
 import { Link } from "react-router-dom";
 import { sample } from "lodash";
-import { createWordSet, changeWordSet, deleteWordSet, showTitleEdit, editTitle, createCard, getLastWordSet } from "../actions/wordSets";
+import { showTitleEdit, editTitle, createCard } from "../actions/wordSets";
 import { startGame } from "../actions/game";
 import TopNav from "../components/TopNav";
 import Footer from "../components/Footer";
 import Card from "../components/Card";
 import WordSetDrawer from "../components/WordSetDrawer";
-import MoreHoriz from 'material-ui/svg-icons/navigation/more-horiz';
+import AddBox from 'material-ui/svg-icons/content/add-box';
+import PlayArrow from 'material-ui/svg-icons/av/play-arrow';
 import IconButton from 'material-ui/IconButton';
 import TextField from "material-ui/TextField";
 import FlatButton from "material-ui/FlatButton";
@@ -16,7 +17,7 @@ import "../styles/WordSetPage.css";
 
 class WordSetPage extends React.Component {
   componentDidMount() {
-    this.props.dispatch(getLastWordSet(this.props.username));
+    // this.props.dispatch(getLastWordSet(this.props.username));
   }
   
   handleEditTitleSubmit(event) {
@@ -56,18 +57,19 @@ class WordSetPage extends React.Component {
             <div className="word-set">
               <WordSetDrawer wordSets={this.props.wordSets} username={this.props.username}/>
               {title()}
-              {/* <button onClick={() => this.props.dispatch(createCard(this.props.currentWordSet._id))}>New card</button> */}
-              {cards}
-              <Link to={"/game/" + this.props.match.params.id}><button onClick={() => {
-                const randomCard = sample(this.props.currentWordSet.cards);
-                const displayedWord = randomCard.term.trim().split("").map(letter => "_");
-                this.props.dispatch(startGame(randomCard._id, displayedWord, this.props.currentWordSet));
+              {this.props.currentWordSet.cards.length > 0 && 
+                <Link to={"/game/play"}><IconButton className="word-set__button word-set__button--play" onClick={() => {
+                  const randomCard = sample(this.props.currentWordSet.cards);
+                  const displayedWord = randomCard.term.trim().split("").map(letter => "_");
+                  this.props.dispatch(startGame(randomCard._id, displayedWord, this.props.currentWordSet));
+                }
+                }><PlayArrow /></IconButton>
+                </Link>
               }
-              }>Play with this word set</button></Link>
-              <button onClick={
-                () => this.props.dispatch(deleteWordSet(this.props.currentWordSet._id, this.props.currentUser.username))}>
-                Delete list
-              </button>
+              {cards}
+              <IconButton className="word-set__button word-set__button--add" onClick={() => this.props.dispatch(createCard(this.props.currentWordSet._id))}>
+                <AddBox />
+              </IconButton>
             </div>
           </main>
           <Footer />
@@ -79,9 +81,6 @@ class WordSetPage extends React.Component {
             <TopNav />
             <main role="main">
               <div className="word-set">
-                <IconButton className="word-set__icon--more">
-                  <MoreHoriz />
-                </IconButton>
                 <h3>New wordset</h3>
                 <button onClick={event => this.handleClick(event)}>New list</button>
                 <button>New card</button>

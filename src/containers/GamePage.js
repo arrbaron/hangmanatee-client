@@ -1,24 +1,22 @@
-import { sampleSize, filter, shuffle } from "lodash";
+import { sampleSize, filter, shuffle, sample } from "lodash";
 import React, { Component } from "react";
+import { Link } from "react-router-dom";
 import { connect } from "react-redux";
-// import { Link } from "react-router-dom";
-import { correctGuess, incorrectGuess, gameOver, resetGame } from "../actions/game";
+import { correctGuess, incorrectGuess, gameOver, resetGame, startGame } from "../actions/game";
 import TopNav from "../components/TopNav";
 import Footer from "../components/Footer";
 import Card from "../components/Card";
+import RaisedButton from "material-ui/RaisedButton";
 import "../styles/GamePage.css";
+import Progress from "../components/Progress";
 
-class GamePage extends Component {
+class GamePage extends Component {  
   componentWillUnmount() {
     console.log("I'm unmounting!");
     this.props.dispatch(resetGame());
-    // reset the game
-      // set status to idle
-      // current card to empty
-      // 
   }
 
-  render() {
+  render() { 
     const guessLetter = letter => {
       if (!this.props.guesses.includes(letter)) {
         const letterGuess = letter.toLowerCase();
@@ -63,7 +61,18 @@ class GamePage extends Component {
 
     const alphabet = ["A", "B", "C", "D", "E", "F", "G", "H", "I", "J", "K", "L", "M", "N", "O", "P", "Q", "R", "S", "T", "U", "V", "W", "X", "Y", "Z"];
     const letters = alphabet.map((letter, index) => {
-      return <button key={letter} onClick={() => guessLetter(letter)}>{letter}</button>;
+      let disabled = "";
+      return <RaisedButton className={`game__letter${disabled}`} label={letter} key={letter} onClick={() => {
+        guessLetter(letter);
+        let clickedLetter = letters.find(l => l.props.label === letter);
+        console.log(clickedLetter);
+        disabled = "game__letter--disabled";
+        // clickedLetter.props.className = "game__letter--disabled";
+        // clickedLetter = className("game__letter--disabled");
+        // console.log(clickedLetter);
+        // "game__letter", "game__letter--disabled"
+      }}/>
+      // return <LetterButton label={letter} key={letter} onClick={guessLetter(letter)} />
     });
     const wrongAnswers = 2;
     const answerChoices = sampleSize(filter(this.props.cards, o => { return o.term !== this.props.currentCard.term }), wrongAnswers);
@@ -80,13 +89,14 @@ class GamePage extends Component {
           <TopNav />
           <main role="main">
             <div className="game">
+              <Progress index={7 - this.props.guessesLeft}/>
               <h3>Category: {this.props.currentWordSet.title.toUpperCase()}</h3>
               <h4>{this.props.message}</h4>
               <p>Guesses left: {this.props.guessesLeft}</p>
-              <div className="letter-row">
+              <div className="game__letters">
                 {letters}
               </div>
-              <p>{this.props.displayedWord.join(" ")}</p>
+              <p className="game__word">{this.props.displayedWord.join(" ")}</p>
             </div>
           </main>
           <Footer />
@@ -98,15 +108,24 @@ class GamePage extends Component {
           <TopNav />
           <main role="main">
             <div className="game">
-              <h3>Category: {this.props.currentWordSet.title.toUpperCase()}</h3>
-              <p>Correct! The word was <strong>{this.props.currentCard.term}</strong>.</p>
-              <div className="letter-row">
-                {letters}
-              </div>
               {!this.props.answerChosen &&
+              <div>
+                <Progress index={8} />
+                <p>Correct! The word was <strong>{this.props.currentCard.term}</strong>.</p>
                 <p>What does <strong>{this.props.currentCard.term}</strong> mean?</p>
+              </div>
               }
               <h4>{this.props.message}</h4>
+              {this.props.answerChosen &&
+                <div className="game__feedback">
+                  <RaisedButton className="game__feedback__button" label="Play again" onClick={() => {
+                    const randomCard = sample(this.props.currentWordSet.cards);
+                    const displayedWord = randomCard.term.trim().split("").map(letter => "_");
+                    this.props.dispatch(startGame(randomCard._id, displayedWord, this.props.currentWordSet));
+              }}/>
+                  <Link to="/word-set/misc" className="game__feedback__button"><RaisedButton label="Back to My Wordsets"/></Link>
+                </div>
+              }
               {cardChoices}
             </div>
           </main>
@@ -119,15 +138,25 @@ class GamePage extends Component {
           <TopNav />
           <main role="main">
             <div className="game">
-              <h3>Category: {this.props.currentWordSet.title.toUpperCase()}</h3>
-              <p>Sorry :( The word was <strong>{this.props.currentCard.term}</strong>.</p>
-              <div className="letter-row">
-                {letters}
-              </div>
               {!this.props.answerChosen &&
+              <div>
+                <Progress index={7} />
+                <p>Sorry :( The word was <strong>{this.props.currentCard.term}</strong>.</p>
                 <p>What does <strong>{this.props.currentCard.term}</strong> mean?</p>
+              </div>
               }
               <h4>{this.props.message}</h4>
+              {this.props.answerChosen &&
+                <div className="game__feedback">
+                <Progress index={9} />
+                  <RaisedButton className="game__feedback__button" label="Play again" onClick={() => {
+                    const randomCard = sample(this.props.currentWordSet.cards);
+                    const displayedWord = randomCard.term.trim().split("").map(letter => "_");
+                    this.props.dispatch(startGame(randomCard._id, displayedWord, this.props.currentWordSet));
+                  }} />
+                  <Link to="/word-set/misc" className="game__feedback__button"><RaisedButton label="Back to My Wordsets" /></Link>
+                </div>
+              }
               {cardChoices}
             </div>
           </main>
