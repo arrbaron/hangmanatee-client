@@ -1,14 +1,13 @@
 .register-form {
-  background-color: white;
-  max-width: 1040px;
-  margin: 0 auto 0 auto;
   padding: 30px 20px 10px 20px;
 }
 
-.register-form label, .register-form button {
-  display: block;
+.register-form * {
+  display: block !important;
+  margin-left: auto !important;
+  margin-right: auto !important;
 }
 
-.register-form button {
-  margin: 0 auto 0 auto;
+.register-form input {
+  display: inline !important;
 }

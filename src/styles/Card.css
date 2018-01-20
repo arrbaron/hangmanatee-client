@@ -4,7 +4,6 @@
   background-color: lightgrey;
   margin: 20px auto 0 auto;
   position: relative;
-
 }
 
 .card p {
@@ -52,4 +51,16 @@
 .card__form div div hr {
   width: 100% !important;
   display: none !important;
+}
+
+@media only screen  and (min-width : 768px) {
+   .card {
+      margin: 20px 10px 0 10px;
+      text-align: center !important;
+      /* align-se */
+   }
+
+   .game .card {
+     margin: 20px auto 0 auto;
+   }
 }
