@@ -13,16 +13,29 @@ class LoginForm extends React.Component {
 
     this.props.dispatch(loginUser(username, password));
   }
-
   render() {
-    return (
-      <form className="login-form" onSubmit={event => this.handleSubmit(event)}>
-        <TextField type="text" name="username" floatingLabelText="username" required/>
-        <TextField type="password" name="password" floatingLabelText="password" required/>
-        <FlatButton type="submit" label="Log in" />
-      </form>
-    )
+    if (this.props.error) {
+      return (
+        <form className="login-form" onKeyUp={() => console.log()} onSubmit={event => this.handleSubmit(event)}>
+          <TextField type="text" errorText="Incorrect username/password" name="username" floatingLabelText="username" required />
+          <TextField type="password" errorText="Incorrect username/password" name="password" floatingLabelText="password" required />
+          <FlatButton type="submit" label="Log in" />
+        </form>
+      )
+    } else {
+      return (
+        <form className="login-form" onKeyUp={() => console.log()} onSubmit={event => this.handleSubmit(event)}>
+          <TextField type="text" name="username" floatingLabelText="username" required />
+          <TextField type="password" name="password" floatingLabelText="password" required />
+          <FlatButton type="submit" label="Log in" />
+        </form>
+      )
+    }
   }
 };
 
-export default connect()(LoginForm);
+const mapStateToProps = state => ({
+  error: state.user.error
+});
+
+export default connect(mapStateToProps)(LoginForm);
