@@ -7,9 +7,9 @@ import './index.css';
 import App from './containers/App';
 
 ReactDOM.render(
-  <Provider store={store}>
-    <MuiThemeProvider>
+  <MuiThemeProvider>
+    <Provider store={store}>
       <App />
-    </MuiThemeProvider>
-  </Provider >,
+    </Provider >
+  </MuiThemeProvider>,
  document.getElementById('root'));
