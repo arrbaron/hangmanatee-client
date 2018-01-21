@@ -1,21 +1,24 @@
 .top-nav h1 {
   font-size: 1.25em !important;
   position: absolute;
+  left: 10%;
   font-family: "Life Savers", cursive;
 }
 
 .top-nav img {
   position: absolute;
   top: 20px;
-  left: 0;
+  left: 2%;
   width: 20px;
   height: 20px;
 }
 
-/* span[role="menuitem"] div div div:nth-of-type(1) {
-  /* display: none !important; */
-/* } */
+@media only screen  and (min-width : 768px) {
+  .top-nav h1 {
+    left: 4%;
+  }
 
-/* div[role="menu"] div:nth-of-type(1) span div {
-  background-color: pink;
-} */
+  .top-nav img {
+    left: 1%;
+  }
+}
