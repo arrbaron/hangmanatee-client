@@ -16,7 +16,7 @@ class LoginForm extends React.Component {
   render() {
     if (this.props.error) {
       return (
-        <form className="login-form" onKeyUp={() => console.log()} onSubmit={event => this.handleSubmit(event)}>
+        <form className="login-form" onSubmit={event => this.handleSubmit(event)}>
           <TextField type="text" errorText="Incorrect username/password" name="username" floatingLabelText="username" required />
           <TextField type="password" errorText="Incorrect username/password" name="password" floatingLabelText="password" required />
           <FlatButton type="submit" label="Log in" />
@@ -24,7 +24,7 @@ class LoginForm extends React.Component {
       )
     } else {
       return (
-        <form className="login-form" onKeyUp={() => console.log()} onSubmit={event => this.handleSubmit(event)}>
+        <form className="login-form" onSubmit={event => this.handleSubmit(event)}>
           <TextField type="text" name="username" floatingLabelText="username" required />
           <TextField type="password" name="password" floatingLabelText="password" required />
           <FlatButton type="submit" label="Log in" />

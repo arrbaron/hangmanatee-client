@@ -32,7 +32,6 @@ class WordSetDrawer extends React.Component {
         }
         <MenuItem className="drawer__menu-item" key={wordSet._id} onClick={
           () => {
-            console.log("I'M BEING CLICKED");
             this.props.dispatch(changeWordSet(wordSet._id))
             this.handleClose()
           }}>
