@@ -36,10 +36,8 @@ const wordSets = (state=initialState, action) => {
     case "SHOW_TITLE_EDIT":
       return { ...state, showTitleEdit: action.shouldShow };
     case "EDIT_TITLE_SUCCESS":
-      console.log("EDIT TITLE SUCCESS");
       return { ...state, sets: state.sets.map(set => set._id === action.wordSet._id ? action.wordSet : set)};
     case "CREATE_CARD_SUCCESS":
-    console.log(action.card);
     return {
        ...state, 
        currentWordSet: {

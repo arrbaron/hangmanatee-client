@@ -25,7 +25,6 @@ const Card = props => {
   };
   
   if (props.answerChosen) {
-    console.log("nothing to display!");
     return null;
   } 
 

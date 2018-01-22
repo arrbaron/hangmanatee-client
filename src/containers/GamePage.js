@@ -12,7 +12,6 @@ import Progress from "../components/Progress";
 
 class GamePage extends Component {  
   componentWillUnmount() {
-    console.log("I'm unmounting!");
     this.props.dispatch(resetGame());
   }
 
@@ -26,7 +25,6 @@ class GamePage extends Component {
         if (answer.includes(letterGuess)) {
           let lettersToGo = 0;
 
-          console.log("letter found in word");
           answer.split("").forEach((lett, index) => {
             if (lett === letterGuess) {
               newDisplayedWord[index] = lett;
@@ -38,19 +36,16 @@ class GamePage extends Component {
           this.props.dispatch(correctGuess(newDisplayedWord, letter));
           checkGameEnd(lettersToGo);
         } else {
-          console.log("letter not found in word");
           this.props.dispatch(incorrectGuess(letter, this.props.guessesLeft - 1));
           checkGameEnd();
         }
       }
       else {
         // return an error message
-        console.log("old letter");
       }
     };
 
     const checkGameEnd = lettersToGo => {
-      console.log(lettersToGo);
       if (lettersToGo < 1) {
         this.props.dispatch(gameOver("win"));
         // TODO: fix the below
