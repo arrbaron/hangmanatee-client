@@ -47,8 +47,10 @@ const Card = props => {
     )).showTerm;
     
     const filterInput = input => {
-      const regex = /[^a-z]/gi;
-      input.value = input.value.replace(regex, "");
+      if (showTerm) {
+        const regex = /[^a-z]/gi;
+        input.value = input.value.replace(regex, "");
+      }
     };
 
     const text = () => {
@@ -61,7 +63,7 @@ const Card = props => {
               props.dispatch(editCard(showTerm, e.target.newText.value, props.currentWordSet._id, props.id));
             }
             }>
-              <TextField type="text" name="newText" onKeyUp={e => filterInput(e.target)} autoFocus onFocus={e => {
+              <TextField type="text" name="newText" onChange={e => filterInput(e.target)} autoFocus onFocus={e => {
                 let val = e.target.value;
                 e.target.value = "";
                 e.target.value = val;
