@@ -13,6 +13,7 @@ import PlayArrow from 'material-ui/svg-icons/av/play-arrow';
 import IconButton from 'material-ui/IconButton';
 import TextField from "material-ui/TextField";
 import FlatButton from "material-ui/FlatButton";
+import RaisedButton from "material-ui/RaisedButton";
 import "../styles/WordSetPage.css";
 
 class WordSetPage extends React.Component {
@@ -58,12 +59,12 @@ class WordSetPage extends React.Component {
               <WordSetDrawer wordSets={this.props.wordSets} username={this.props.username}/>
               {title()}
               {this.props.currentWordSet.cards.length > 0 && 
-                <Link to={"/game/play"}><IconButton className="word-set__button word-set__button--play" onClick={() => {
+                <Link to={"/game/play"}><RaisedButton label="Play with a random word"
+                 className="word-set__button word-set__button--play" onClick={() => {
                   const randomCard = sample(this.props.currentWordSet.cards);
                   const displayedWord = randomCard.term.trim().split("").map(letter => "_");
                   this.props.dispatch(startGame(randomCard._id, displayedWord, this.props.currentWordSet));
-                }
-                }><PlayArrow /></IconButton>
+                }}/>
                 </Link>
               }
               <div className="cards">
