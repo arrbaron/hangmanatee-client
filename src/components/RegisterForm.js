@@ -26,9 +26,9 @@ class RegisterForm extends React.Component {
         <TextField type="text" name="username" floatingLabelText="username" required />
         <TextField type="password" name="password" floatingLabelText="password" required/>
         <FlatButton type="submit" label="Sign up"/>
-        <p>Already signed up? <Link to="/login">Login!</Link></p>
-        <Link to="#" onClick={() => this.props.dispatch(loginUser("demouser123", "demouser123"))}>
-          Try our demo account
+        <Link to="/login" className="link link--login"><FlatButton label="Already signed up? Login!" /></Link>
+        <Link to="#" className="link link--login" onClick={() => this.props.dispatch(loginUser("demouser123", "demouser123"))}>
+          <FlatButton label="Try our demo account" />
         </Link>
       </form>
     )
