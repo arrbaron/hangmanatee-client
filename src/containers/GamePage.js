@@ -107,6 +107,7 @@ class GamePage extends Component {
               <h4>{this.props.message}</h4>
               {this.props.answerChosen &&
                 <div className="game__feedback">
+                  <Progress index={9} />  
                   <RaisedButton className="game__feedback__button" label="Play again" onClick={() => {
                     const randomCard = sample(this.props.currentWordSet.cards);
                     const displayedWord = randomCard.term.trim().split("").map(letter => "_");
