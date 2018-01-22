@@ -1,10 +1,10 @@
 const initialState = {
   currentWordSet: {
-    title: "New Word Set",
+    title: "My Word Set",
     cards: [
       {
-        term: "",
-        definition: "",
+        term: "term",
+        definition: "my definition",
         showEdit: false,
         showTerm: true
       }
@@ -32,7 +32,8 @@ const wordSets = (state=initialState, action) => {
       }
       return state;
     case "CLEAR_SETS":
-      return { ...state, currentWordSet: {}, sets: []};
+      // return { ...state, currentWordSet: {}, sets: []};
+      return initialState;
     case "SHOW_TITLE_EDIT":
       return { ...state, showTitleEdit: action.shouldShow };
     case "EDIT_TITLE_SUCCESS":
