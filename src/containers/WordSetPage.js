@@ -9,7 +9,6 @@ import Footer from "../components/Footer";
 import Card from "../components/Card";
 import WordSetDrawer from "../components/WordSetDrawer";
 import AddBox from 'material-ui/svg-icons/content/add-box';
-import PlayArrow from 'material-ui/svg-icons/av/play-arrow';
 import IconButton from 'material-ui/IconButton';
 import TextField from "material-ui/TextField";
 import FlatButton from "material-ui/FlatButton";
@@ -17,10 +16,6 @@ import RaisedButton from "material-ui/RaisedButton";
 import "../styles/WordSetPage.css";
 
 class WordSetPage extends React.Component {
-  componentDidMount() {
-    // this.props.dispatch(getLastWordSet(this.props.username));
-  }
-  
   handleEditTitleSubmit(event) {
     event.preventDefault();
     const newTitle = event.target.newTitle.value;
