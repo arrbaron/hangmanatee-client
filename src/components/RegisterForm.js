@@ -2,7 +2,7 @@ import React from "react";
 import history from "../history";
 import { connect } from "react-redux";
 import { Link } from "react-router-dom";
-import { registerUser } from "../actions/user";
+import { registerUser, loginUser } from "../actions/user";
 import FlatButton from "material-ui/FlatButton";
 import TextField from "material-ui/TextField";
 import "../styles/RegisterForm.css";
@@ -18,7 +18,6 @@ class RegisterForm extends React.Component {
   }
 
   render() {
-    console.log(); 
     return (    
       <form className="register-form" onSubmit={event => this.handleSubmit(event)}>
         {history.location.pathname === "/" && 
@@ -28,6 +27,9 @@ class RegisterForm extends React.Component {
         <TextField type="password" name="password" floatingLabelText="password" required/>
         <FlatButton type="submit" label="Sign up"/>
         <p>Already signed up? <Link to="/login">Login!</Link></p>
+        <Link to="#" onClick={() => this.props.dispatch(loginUser("demouser123", "demouser123"))}>
+          Try our demo account
+        </Link>
       </form>
     )
   };
