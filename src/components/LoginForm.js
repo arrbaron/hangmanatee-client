@@ -1,6 +1,7 @@
 import React from "react";
 import { connect } from "react-redux";
 import { loginUser } from "../actions/user";
+import { Link } from "react-router-dom";
 import FlatButton from "material-ui/FlatButton";
 import TextField from "material-ui/TextField";
 import "../styles/LoginForm.css";
