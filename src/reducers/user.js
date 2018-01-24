@@ -1,6 +1,7 @@
 const initialState = {
   currentUser: {},
-  token: ""
+  token: "",
+  error: ""
 };
 
 const user = (state=initialState, action) => {
@@ -10,7 +11,7 @@ const user = (state=initialState, action) => {
     case "LOGIN_USER_SUCCESS":
       return { ...state, token: action.token, currentUser: action.user, error: "" };
     case "LOGIN_USER_FAILURE":
-      return { ...state, error: "Incorrect username/password." }
+      return { ...state, error: action.err }
     case "LOGOUT_USER":
       return initialState;
     default:
