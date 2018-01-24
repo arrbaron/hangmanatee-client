@@ -15,8 +15,8 @@ import '../styles/App.css';
 
 class App extends Component {
   componentDidMount() {
-    const authToken = localStorage.getItem("item");
-    this.props.dispatch(loginUserSuccess, authToken);
+    // const authToken = localStorage.getItem("item");
+    // this.props.dispatch(loginUserSuccess, authToken);
   }
   
   render() {
