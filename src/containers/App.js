@@ -5,7 +5,7 @@ import {
   Route,
 } from "react-router-dom";
 import history from "../history";
-import { loginUserSuccess } from "../actions/user";
+// import { loginUserSuccess } from "../actions/user";
 import LandingPage from "./LandingPage";
 import WordSetPage from "./WordSetPage";
 import RegisterPage from "./RegisterPage";
