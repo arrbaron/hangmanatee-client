@@ -5,6 +5,6 @@ This project was bootstrapped with [Create React App](https://github.com/faceboo
 
 ## Getting Started
 ### Installing
-> git clone https://github.com/soundofsilence75/hangmanatee-client.git
+``` git clone https://github.com/soundofsilence75/hangmanatee-client.git
 > cd hangmanatee-client
-> npm install
+> npm install ```
