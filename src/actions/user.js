@@ -11,7 +11,7 @@ const registerUserSuccess = user => {
 };
 
 export const loginUserSuccess = (token, user) => {
-  history.push("/word-set/misc")
+  if (history.location.pathname !== "/") history.push("/word-set/misc");
   return ({
     type: "LOGIN_USER_SUCCESS",
     token,
