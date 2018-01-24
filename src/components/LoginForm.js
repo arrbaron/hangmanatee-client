@@ -28,6 +28,9 @@ class LoginForm extends React.Component {
           <TextField type="text" name="username" floatingLabelText="username" required />
           <TextField type="password" name="password" floatingLabelText="password" required />
           <FlatButton type="submit" label="Log in" />
+          <Link to="#" className="link link--login" onClick={() => this.props.dispatch(loginUser("demouser123", "demouser123"))}>
+            <FlatButton label="Try our demo account" />
+          </Link>
         </form>
       )
     }
