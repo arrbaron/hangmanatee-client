@@ -68,7 +68,7 @@ const Card = props => {
                 e.target.value = val;
               }}
               defaultValue={showTerm ? props.term : props.def} />
-              <FlatButton type="submit" label="OK" />
+              <FlatButton type="submit" label="SAVE" />
             </form>
           </div>
         );

@@ -33,7 +33,7 @@ class WordSetPage extends React.Component {
               e.target.value = val;
             }}
             defaultValue={this.props.currentWordSet.title} />
-            <FlatButton className="word-set__form__button" type="submit" label="OK" />
+            <FlatButton className="word-set__form__button" type="submit" label="SAVE" />
           </form>
         );
       } else {
