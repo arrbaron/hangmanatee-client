@@ -2,6 +2,7 @@ This project was bootstrapped with [Create React App](https://github.com/faceboo
 
 # Hangmanateach
 [Hangmanateach](https://hangmanatee.netlify.com/) is a responsive fullstack app that combines the effectiveness of flash cards with the enjoyment of hangman to provide a unique vocabulary studying solution.
+
 <img width="33%" height="33%" src=https://github.com/soundofsilence75/hangmanatee-client/blob/master/src/images/landingWordsetCreation.PNG />
 <img width="33%" height="33%" src=https://github.com/soundofsilence75/hangmanatee-client/blob/master/src/images/landingGuessing.PNG />
 <img width="33%" height="33%" src=https://github.com/soundofsilence75/hangmanatee-client/blob/master/src/images/landingAnswer.PNG />
