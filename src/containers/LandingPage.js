@@ -48,7 +48,6 @@ const LandingPage = props => {
   return (
     <div className="App">
       <TopNav />
-      {/* <Nav /> */}
       <Header />
       {landingSections}
       <RegisterForm />

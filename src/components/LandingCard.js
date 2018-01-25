@@ -2,16 +2,14 @@ import React from 'react';
 import { Card, CardMedia, CardTitle, CardText } from 'material-ui/Card';
 import Divider from "material-ui/Divider";
 
-const CardExampleWithAvatar = props => (
+const LandingCard = props => (
   <Card>
     <CardTitle className="landing__title" style={{fontSize: "40px"}} title={props.title} subtitle={props.subtitle} />
     <CardText className="landing__text">
       {props.text}
     </CardText>
     <Divider />
-    <CardMedia 
-      overlay={<CardTitle title={props.title} />}
-    >
+    <CardMedia >
       <img src={props.image} alt="" />
     </CardMedia>
 
@@ -22,4 +20,4 @@ const CardExampleWithAvatar = props => (
   </Card>
 );
 
-export default CardExampleWithAvatar;
+export default LandingCard;

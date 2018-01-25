@@ -7,6 +7,9 @@ const Header = () => (
     <h1>Hangmanateach</h1>
     <img src={logo} alt="hangmanateacher logo" />
     <h2>Play & Memorize!</h2>
+    <h3>
+      A vocabulary studying app that combines the power of flashcards with the fun of hangman!
+    </h3>
   </header>
 );
 
