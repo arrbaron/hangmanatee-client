@@ -3,9 +3,8 @@ This project was bootstrapped with [Create React App](https://github.com/faceboo
 # Hangmanateach
 [Hangmanateach](https://hangmanatee.netlify.com/) is a responsive fullstack app that combines the effectiveness of flash cards with the enjoyment of hangman to provide a unique vocabulary studying solution.
 
-<img width="33%" height="33%" src=https://github.com/soundofsilence75/hangmanatee-client/blob/master/src/images/landingWordsetCreation.PNG />
-<img width="33%" height="33%" src=https://github.com/soundofsilence75/hangmanatee-client/blob/master/src/images/landingGuessing.PNG />
-<img width="33%" height="33%" src=https://github.com/soundofsilence75/hangmanatee-client/blob/master/src/images/landingAnswer.PNG />
+![logo](https://github.com/soundofsilence75/hangmanatee-client/blob/master/src/images/logo.png)
+
 
 ## Getting Started
 ### Installing - Frontend
@@ -34,8 +33,16 @@ This project was bootstrapped with [Create React App](https://github.com/faceboo
 ## Purpose
 Hangmanateach was inspired by countless hours of of learning (and teaching!) vocabulary with conventional flashcard apps. The efficacy of flashcards can occassionally be overshadowed by their dull nature. Hangmanateach's goal is to remedy this problem. The app allows users to:
 1. Create study lists
+
+<img width="33%" height="33%" src=https://github.com/soundofsilence75/hangmanatee-client/blob/master/src/images/landingWordsetCreation.PNG />
+
 2. Play hangman with these lists
+
+<img width="33%" height="33%" src=https://github.com/soundofsilence75/hangmanatee-client/blob/master/src/images/landingGuessing.PNG />
+
 3. Get quizzed on the words' meaning
+
+<img width="33%" height="33%" src=https://github.com/soundofsilence75/hangmanatee-client/blob/master/src/images/landingAnswer.PNG />
 
 ## Technology
 ### Frontend
