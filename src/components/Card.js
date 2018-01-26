@@ -17,9 +17,9 @@ const Card = props => {
     let message = "";
 
     if (props.def === props.currentCard.definition) {
-      message = `Correct! ${props.currentCard.term} means ${props.currentCard.definition}!`;
+      message = `Correct! ${props.currentCard.term} matches ${props.currentCard.definition}!`;
     } else {
-      message = `Sorry. ${props.currentCard.term} actually means ${props.currentCard.definition}.`;
+      message = `Sorry. ${props.currentCard.term} actually matches ${props.currentCard.definition}.`;
     }
     props.dispatch(chooseAnswer(message));
   };

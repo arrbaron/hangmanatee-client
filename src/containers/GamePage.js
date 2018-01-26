@@ -101,7 +101,7 @@ class GamePage extends Component {
               <div>
                 <Progress index={8} />
                 <p>Correct! The word was <strong>{this.props.currentCard.term}</strong>.</p>
-                <p>What does <strong>{this.props.currentCard.term}</strong> mean?</p>
+                <p>What does <strong>{this.props.currentCard.term}</strong> match?</p>
               </div>
               }
               <h4>{this.props.message}</h4>
@@ -132,7 +132,7 @@ class GamePage extends Component {
               <div>
                 <Progress index={7} />
                 <p>Sorry :( The word was <strong>{this.props.currentCard.term}</strong>.</p>
-                <p>What does <strong>{this.props.currentCard.term}</strong> mean?</p>
+                <p>What does <strong>{this.props.currentCard.term}</strong> match?</p>
               </div>
               }
               <h4>{this.props.message}</h4>
