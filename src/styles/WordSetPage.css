@@ -57,6 +57,7 @@
   display: block !important;
   margin-left: auto !important;
   margin-right: auto !important;
+  margin-bottom: 30px !important;
 }
 
 .word-set__button--play {
